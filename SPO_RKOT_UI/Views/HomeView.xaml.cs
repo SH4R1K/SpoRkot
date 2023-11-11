@@ -77,7 +77,7 @@ namespace SPO_RKOT_UI.Views
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("обновление заглушка");
+            
         }
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
