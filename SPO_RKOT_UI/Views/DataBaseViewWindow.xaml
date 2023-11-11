@@ -190,13 +190,21 @@
                                 Background="{StaticResource panelColor}"
                                 CornerRadius="10" 
                                 Padding="10">
+                            <ScrollViewer x:Name="dgridScrollViewer"
+                              Loaded="dgridScrollViewer_Loaded"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
                             <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="excelDataGrid"
-                                    ColumnWidth="*"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                      HorizontalScrollBarVisibility="Hidden"
+                                      VerticalScrollBarVisibility="Hidden"
                                     Background="{StaticResource panelColor}"
                                     BorderThickness="0"
                                     CanUserAddRows="False"
                                     CanUserDeleteRows="False"
-                                    IsReadOnly="False" AutoGenerateColumns="False" HeadersVisibility="Column">
+                                     CanUserResizeColumns="False"
+                                    IsReadOnly="False" AutoGenerateColumns="False" HeadersVisibility="Column" SelectionUnit="Cell">
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Background" Value="Transparent"/>
@@ -204,21 +212,59 @@
                                         <Setter Property="Padding" Value="10,0,0,10"/>
                                         <Setter Property="FontFamily" Value="Montserrat"/>
                                         <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="LayoutTransform">
+                                            <Setter.Value>
+                                                <TransformGroup>
+                                                    <RotateTransform Angle="90"/>
+                                                </TransformGroup>
+                                            </Setter.Value>
+                                        </Setter>
                                     </Style>
                                 </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.LayoutTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="-90"/>
+                                    </TransformGroup>
+                                </DataGrid.LayoutTransform>
+                                <DataGrid.CellStyle>
+                                    <Style>
+                                        <Setter Property="TextBlock.LayoutTransform">
+                                            <Setter.Value>
+                                                <TransformGroup>
+                                                    <RotateTransform Angle="90"/>
+                                                </TransformGroup>
+                                            </Setter.Value>
+                                        </Setter>
+                                            <Setter Property="TextBox.LayoutTransform">
+                                                <Setter.Value>
+                                                    <TransformGroup>
+                                                        <RotateTransform Angle="90"/>
+                                                    </TransformGroup>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                        </Style>
+                                </DataGrid.CellStyle>
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Operator.Name}" ClipboardContentBinding="{x:Null}" Header="Оператор" HeaderStringFormat=""/>
-                                    <DataGridTextColumn Binding="{Binding VoiceQuality.NonAccessibilityRatio}" ClipboardContentBinding="{x:Null}" Header="VoiceQuality"/>
-                                    <DataGridTextColumn Binding="{Binding VoiceQuality.CutoffRatio}" ClipboardContentBinding="{x:Null}" Header="VoiceQuality"/>
-                                    <DataGridTextColumn Binding="{Binding VoiceQuality.MOSPOLQA}" ClipboardContentBinding="{x:Null}" Header="VoiceQuality"/>
-                                    <DataGridTextColumn Binding="{Binding VoiceQuality.NegativeMOSSamplesRatio}" ClipboardContentBinding="{x:Null}" Header="VoiceQuality"/>
-                                    <DataGridTextColumn Binding="{Binding SmsQuality.ShareUndelivered}" ClipboardContentBinding="{x:Null}" Header="SmsQuality"/>
-                                    <DataGridTextColumn Binding="{Binding SmsQuality.AverageDeliveryTime}" ClipboardContentBinding="{x:Null}" Header="SmsQuality"/>
-                                    <DataGridTextColumn Binding="{Binding HttpQuality.SessionFailureRatio}" ClipboardContentBinding="{x:Null}" Header="HttpQuality"/>
-                                    <DataGridTextColumn Binding="{Binding HttpQuality.ULMeanUserDataRate}" ClipboardContentBinding="{x:Null}" Header="HttpQuality"/>
-                                    <DataGridTextColumn Binding="{Binding HttpQuality.DLMeanUserDataRate}" ClipboardContentBinding="{x:Null}" Header="HttpQuality"/>
-                                    <DataGridTextColumn Binding="{Binding HttpQuality.SessionTime}" ClipboardContentBinding="{x:Null}" Header="HttpQuality"/>
-                                </DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding VoiceQuality.NonAccessibilityRatio}" ClipboardContentBinding="{x:Null}" Header="Доля неуспешных попыток установления голосового соединения  (Voice Service Non-Acessibility ) [%] "/>
+                                        <DataGridTextColumn Binding="{Binding VoiceQuality.CutoffRatio}" ClipboardContentBinding="{x:Null}" Header="Доля обрывов голосовых соединений ( Voice Service Cut-off Ratio) [%]"/>
+                                        <DataGridTextColumn Binding="{Binding VoiceQuality.MOSPOLQA}" ClipboardContentBinding="{x:Null}" Header="Средняя разборчивость речи на соединение (Speech Quality on Call basis (MOS POLQA))"/>
+                                        <DataGridTextColumn Binding="{Binding VoiceQuality.NegativeMOSSamplesRatio}" ClipboardContentBinding="{x:Null}" Header="Доля голосовых соединений с низкой разборчивостью речи (Negative MOS samples Ratio,MOS POLQA) [%]"/>
+                                        <DataGridTextColumn Binding="{Binding SmsQuality.ShareUndelivered}" ClipboardContentBinding="{x:Null}" Header="Доля недоставленных SMS сообщений [%]"/>
+                                        <DataGridTextColumn Binding="{Binding SmsQuality.AverageDeliveryTime}" ClipboardContentBinding="{x:Null}" Header="Среднее время доставки SMS сообщений [сек]"/>
+                                        <DataGridTextColumn Binding="{Binding HttpQuality.SessionFailureRatio}" ClipboardContentBinding="{x:Null}" Header="Доля неуспешных сессий по протоколу HTTP (HTTP Session Failure Ratio) [%]"/>
+                                        <DataGridTextColumn Binding="{Binding HttpQuality.ULMeanUserDataRate}" ClipboardContentBinding="{x:Null}" Header="Среднее значение скорости передачи данных от абонента (HTTP UL Mean User Data Rate) [kbit/sec]"/>
+                                        <DataGridTextColumn Binding="{Binding HttpQuality.DLMeanUserDataRate}" ClipboardContentBinding="{x:Null}" Header="Среднее значение скорости передачи данных к абоненту (HTTP DL Mean User Data Rate) [kbit/sec]"/>
+                                        <DataGridTextColumn Binding="{Binding HttpQuality.SessionTime}" ClipboardContentBinding="{x:Null}" Header="Продолжительность успешной сессии (HTTP Session Time) [s]"/>
+                                        <DataGridTextColumn Binding="{Binding Stat.CountTestConnection}" ClipboardContentBinding="{x:Null}" Header="Общее количество тестовых голосовых соединений "/>
+                                        <DataGridTextColumn Binding="{Binding Stat.POLQA}" ClipboardContentBinding="{x:Null}" Header="Общее количество голосовых последовательностей в оцениваемых соединениях (POLQA) "/>
+                                        <DataGridTextColumn Binding="{Binding Stat.NegativeMOSSamplesCount}" ClipboardContentBinding="{x:Null}" Header="Количество голосовых соединений с низкой разборчивостью (Negative MOS samples Count, MOS POLQA)[%]"/>
+                                        <DataGridTextColumn Binding="{Binding Stat.CountSMS}" ClipboardContentBinding="{x:Null}" Header="Общее количество отправленных SMS - сообщений"/>
+                                        <DataGridTextColumn Binding="{Binding Stat.CountLoadFile}" ClipboardContentBinding="{x:Null}" Header="Общее количество попыток соединений с сервером передачи данных HTTP (Загрузка файлов)"/>
+                                        <DataGridTextColumn Binding="{Binding Stat.CountWebBrowsing}" ClipboardContentBinding="{x:Null}" Header="Общее количество тестовых сессий по протоколу HTTP (Web-browsing)"/>
+                                    </DataGrid.Columns>
                                 <DataGrid.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Header="Сортировка по возрастанию"/>
@@ -239,6 +285,7 @@
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
                             </DataGrid>
+                            </ScrollViewer>
                         </Border>
                     </Grid>
                 </Grid>
