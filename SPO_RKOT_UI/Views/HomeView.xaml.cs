@@ -55,6 +55,20 @@ namespace SPO_RKOT_UI.Views
 
         private void UserList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            OpenTableView();
+        }
+
+        private void WatchButtonInRow_Click(object sender, RoutedEventArgs e)
+        {
+            ReportInfo report = (sender as System.Windows.Controls.Button)?.DataContext as ReportInfo;
+
+            //ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
+            var dataBase = new DataBaseViewWindow(report);
+            dataBase.ShowDialog();
+        }
+
+        private void OpenTableView()
+        {
             if (reportsListView.SelectedItem == null) return;
             ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
             var dataBase = new DataBaseViewWindow(reportInfo);
@@ -78,6 +92,7 @@ namespace SPO_RKOT_UI.Views
             }
         }
 
+        //filtration
         private void FindLocationTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             reportsListView.Items.Filter = FilterLocationMethod; //поиск по listview

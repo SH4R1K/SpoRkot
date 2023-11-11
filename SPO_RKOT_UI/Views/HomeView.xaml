@@ -381,15 +381,17 @@
                         <GridViewColumn Header="Период проведения контроля">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Добавить"
+                                    <Button Content="Открыть"
                                         Style="{StaticResource buttonDefaulStyle}"
                                             Padding="0"
                                             Margin="0"
-                                            Width="90"
-                                            Foreground="{StaticResource titleColor1}"/>
+                                            Width="100"
+                                            Foreground="{StaticResource titleColor1}"
+                                            Click="WatchButtonInRow_Click"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        
                     </GridView>
                 </ListView.View>
                 <ListView.ContextMenu>
