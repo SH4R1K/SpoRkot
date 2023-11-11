@@ -9,7 +9,7 @@
         Title="Данные отчета" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True" Closing="Window_Closing">
     <Window.Resources>
         <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
             <Setter Property="Background" Value="Transparent"/>

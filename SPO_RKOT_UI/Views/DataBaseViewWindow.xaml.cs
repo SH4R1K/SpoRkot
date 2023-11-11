@@ -64,10 +64,34 @@ namespace SPO_RKOT_UI.Views
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            ReportInfoSaveChanged();
+        }
+
+        private void ReportInfoSaveChanged()
+        {
             using (var context = new RkotContext())
             {
                 context.Update(ReportInfo);
                 context.SaveChanges();
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaveChangesWindowDialog saveChangesWindowDialog = new SaveChangesWindowDialog();
+            saveChangesWindowDialog.ShowDialog();
+            if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Yes)
+            {
+                ReportInfoSaveChanged();
+                MessageBox.Show("Данные сохранены");
+            }
+            else if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.No)
+            {
+                MessageBox.Show("Данные не сохранены");
+            }
+            else
+            {
+                e.Cancel = true;
             }
         }
     }
