@@ -18,6 +18,10 @@
             <Setter Property="FontFamily" Value="Montserrat"/>
             <Setter Property="FontSize" Value="15"/>
         </Style>
+
+            <Style TargetType="DataGridCell">
+                <Setter Property="Effect" Value="{x:Null}" />
+            </Style>
     </Window.Resources>
 
     <Border CornerRadius="10"                    
@@ -227,8 +231,14 @@
                                     </TransformGroup>
                                 </DataGrid.LayoutTransform>
                                 <DataGrid.CellStyle>
-                                    <Style>
-                                        <Setter Property="TextBlock.LayoutTransform">
+                                    
+                                    <Style TargetType="DataGridCell">
+                                            <Setter Property="Effect" Value="{x:Null}" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                            <Setter Property="Padding" Value="5" />
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="Foreground" Value="{StaticResource titleColor1}" />
+                                            <Setter Property="TextBlock.LayoutTransform">
                                             <Setter.Value>
                                                 <TransformGroup>
                                                     <RotateTransform Angle="90"/>
@@ -244,6 +254,7 @@
                                             </Setter>
                                             <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
                                             <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                           
                                         </Style>
                                 </DataGrid.CellStyle>
                                 <DataGrid.Columns>
