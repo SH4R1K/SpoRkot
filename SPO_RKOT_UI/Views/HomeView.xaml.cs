@@ -35,9 +35,11 @@ namespace SPO_RKOT_UI.Views
             if (openFileDialog.ShowDialog() == true)
             {
                 fileName = openFileDialog.FileName;
-                ExcelReader.ImportFromExcel(fileName);
+                if (ExcelReader.ImportFromExcel(fileName))
+                    MessageBox.Show("Отчет успешно добавлен.");
+                else
+                    MessageBox.Show("Отчет с такими данными уже есть");
             }
-            MessageBox.Show("Работает без прикола!");
         }
 
 
