@@ -1,19 +1,9 @@
-﻿using FontAwesome.Sharp;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic.ApplicationServices;
-using SPO_RKOT_UI.ClassWork;
+﻿using Microsoft.EntityFrameworkCore;
+using SpoRkotLibrary.Data;
 using SpoRkotLibrary.Models;
-using SPO_RKOT_UI.Views;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
-using SpoRkotLibrary.Data;
 
 namespace SPO_RKOT_UI.ViewModels
 {
@@ -40,8 +30,8 @@ namespace SPO_RKOT_UI.ViewModels
 
         private void ShowDataBaseViewWindow(object obj)
         {
-           // var dataBase = new DataBaseViewWindow();
-           // dataBase.ShowDialog();
+            // var dataBase = new DataBaseViewWindow();
+            // dataBase.ShowDialog();
         }
     }
 }

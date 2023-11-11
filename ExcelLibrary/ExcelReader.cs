@@ -1,5 +1,4 @@
-﻿using Microsoft.Office.Interop.Excel;
-using SpoRkotLibrary.Data;
+﻿using SpoRkotLibrary.Data;
 using SpoRkotLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 
 
-namespace SPO_RKOT_UI.ClassWork
+namespace ExcelLibrary
 {
     public static class ExcelReader
     {
