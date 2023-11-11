@@ -1,0 +1,206 @@
+﻿<Window x:Class="SPO_RKOT_UI.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SPO_RKOT_UI.Views"
+        xmlns:viewModel="clr-namespace:SPO_RKOT_UI.ViewModels" 
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        Title="SPO RKOT" Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.CommandBindings>
+        <CommandBinding x:Name="CloseCommandBinding" Executed="CloseCommandBinding_Executed" Command="Close"/>
+    </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding Key="F1" Command="{Binding ShowInformationViewCommand}"/>
+        <KeyBinding Key="Esc" Command="Close"/>
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <!--Screens-->
+        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+            <local:HomeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:InformationViewModel}">
+            <local:InformationView/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Border CornerRadius="10"                    
+            BorderThickness="1"
+            BorderBrush="{StaticResource plainTextColor3}">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <!--Navigation menu-->
+                <ColumnDefinition Width="250"/>
+                <!--Content section-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Navigation Menu-->
+            <Border CornerRadius="10,0,0,10"
+                    Grid.Column="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                        <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel>
+
+                        <!--Logo-->
+                        <StackPanel Orientation="Horizontal"
+                                Height="35"
+                                Margin="15,25,0,40">
+
+                            <!--<Image Source="/Images/Logo.png" Height="30"/>-->
+                            <TextBlock Text="СПО РКОТ"
+                                   Foreground="{StaticResource titleColor2}"
+                                   FontSize="20"
+                                   FontFamily="Montserrat"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"/>
+                        </StackPanel>
+
+                        <!--Menu Buttons-->
+
+                        <!--Список Отчётов Btn-->
+                        <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 IsChecked="True"
+                                 Command="{Binding ShowHomeViewCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="List" Style="{StaticResource menuButtonIcon}"/>
+                                <!--icon of menu btns-->
+                                <TextBlock Text="Список Отчётов" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                        </RadioButton>   
+                        
+                        <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowInformationViewCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="Question" Style="{StaticResource menuButtonIcon}"/>
+                                <!--icon of menu btns-->
+                                <TextBlock Text="Справка" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                        </RadioButton>  
+                    </StackPanel>
+                    <!--Exit Btn-->
+                    <StackPanel Grid.Row="1"
+                                VerticalAlignment="Bottom">
+                        <RadioButton Style="{StaticResource menuButton}"
+                             Tag="{StaticResource color4}"
+                             Click="CloseButton_Click"
+                             >
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="X" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Выход" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                        </RadioButton>
+                    </StackPanel>                    
+                </Grid>                           
+            </Border>
+
+            <!--Main Section-->
+            <Border CornerRadius="0,10,10,0"
+                    Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!--Control bar-->
+                        <RowDefinition Height="25"/>
+                        <!--Header / Caption-->
+                        <RowDefinition Height="35"/>
+                        <!--Content section / Child views-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Control bar-->
+                    <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseLeftButtonDown="PanelControlBar_MouseLeftButtonDown"
+                                MouseEnter="PanelControlBar_MouseEnter">
+                        <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color4}"
+                                Click="CloseButton_Click">
+                            <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
+                        </Button>
+
+                        <Button x:Name="btnMaximize"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color6}"
+                                Click="MaximizeButton_Click">
+                            <fa:IconImage Icon="Square" Style="{StaticResource controlButtonIcon}"/>
+                        </Button>
+
+                        <Button x:Name="btnMinimize"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color8}"
+                                Click="MinimizeButton_Click">
+                            <fa:IconImage Icon="WindowMinimize" Width="12" Style="{StaticResource controlButtonIcon}"/>
+                        </Button>
+                    </StackPanel>
+
+                    <!--Header / Caption-->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Caption-->
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <fa:IconImage Icon="{Binding Icon}"
+                                          Height="20"
+                                          Width="20"
+                                          Foreground="{StaticResource titleColor2}"
+                                          Margin="35,0,10,0"/>
+
+                            <TextBlock Text="{Binding Caption}"
+                                       Foreground="{StaticResource titleColor2}"
+                                       FontSize="16"
+                                       FontFamily="Montserrat"
+                                       FontWeight="Medium"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Content section / Child views-->
+                    <ContentControl Content="{Binding CurrentChildView}" Grid.Row="2" Margin="25"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

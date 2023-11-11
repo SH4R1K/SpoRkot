@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="SPO_RKOT_UI.Views.InformationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:SPO_RKOT_UI.ViewModels" 
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local="clr-namespace:SPO_RKOT_UI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <!--Data Grid-->
+        <Border Grid.Row="1"
+                Background="{StaticResource panelColor}"
+                CornerRadius="10" 
+                Padding="10">
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap"
+                    Style="{StaticResource InformationTextBlock}">
+Для загрузки Excel файла с отчётом, нажмите <Run FontWeight="Bold">"Добавить отчёт"</Run>. 
+Отчет автоматически загрузится в базу данных.
+<LineBreak />
+<LineBreak />
+Чтобы просмотреть или изменить отчет, выберите его в списке отчетов и нажмите <Run FontWeight="Bold">"Просмотеть отчёт"</Run>.
+Или нажмите два раза по строке с нужным отчетом.
+                    <LineBreak />
+                    <LineBreak />
+<Run FontWeight="Bold">Горячие клавиши:</Run> 
+                    <LineBreak />
+                    Ctrl+N - "Добавить отчёт" | F1 - "Справка"
+                    <LineBreak />
+                    F5 - "Обновить список"    | Esc - "Выход"
+                    
+                </TextBlock>
+                <Separator/>
+
+                <TextBlock TextWrapping="Wrap"
+                    Style="{StaticResource InformationTextBlock}">
+                        <Run FontWeight="Bold">О нас:</Run>
+                </TextBlock>
+                <Image Source="/Images/Hahatun.png" 
+                       Height="50"
+                       HorizontalAlignment="Left"/>
+                <WrapPanel Orientation="Horizontal">
+                    <StackPanel Margin="10">
+                        <TextBlock Style="{StaticResource InformationTextBlock}"
+                                   HorizontalAlignment="Center">
+                        <Run FontWeight="Bold" FontSize="18">Попов Глеб</Run>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource InformationTextBlock}"
+                                   Padding="3"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center">
+                        Программист<LineBreak />
+                        t.me/SH4R1K
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Margin="10">
+                        <TextBlock Style="{StaticResource InformationTextBlock}"
+                                   HorizontalAlignment="Center">
+                        <Run FontWeight="Bold" FontSize="18">Пономорёв Иван</Run>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource InformationTextBlock}"
+                                   Padding="3"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center">
+                        Программист<LineBreak />
+                        t.me/vanek_ponom
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Margin="10">
+                        <TextBlock Style="{StaticResource InformationTextBlock}"
+                                   HorizontalAlignment="Center">
+                        <Run FontWeight="Bold" FontSize="18">Хватов Яков</Run>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource InformationTextBlock}"
+                                   Padding="3"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center">
+                        Программист<LineBreak />
+                        t.me/Meresk1
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Margin="10">
+                        <TextBlock Style="{StaticResource InformationTextBlock}"
+                                   HorizontalAlignment="Center">
+                        <Run FontWeight="Bold" FontSize="18">Дмитрий Ушаков</Run>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource InformationTextBlock}"
+                                   Padding="3"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center">
+                        Менеджер<LineBreak />
+                        t.me/Without_thanks_save
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Margin="10">
+                        <TextBlock Style="{StaticResource InformationTextBlock}"
+                                   HorizontalAlignment="Center">
+                        <Run FontWeight="Bold" FontSize="18">Антипин Егор</Run>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource InformationTextBlock}"
+                                   Padding="3"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center">
+                        Программист<LineBreak />
+                        t.me/onetinow
+                        </TextBlock>
+                    </StackPanel>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
