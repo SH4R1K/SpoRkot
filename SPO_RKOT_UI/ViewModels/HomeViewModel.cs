@@ -37,7 +37,8 @@ namespace SPO_RKOT_UI.ViewModels
         {
             using (var context = new RkotContext())
             {
-                var reportInfos = context.ReportInfos.AsNoTracking().Include(ri => ri.Reports).ThenInclude(r => r.Stat)
+                var reportInfos = context.ReportInfos.AsNoTracking()
+                    .Include(ri => ri.Reports).ThenInclude(r => r.Stat)
                     .Include(ri => ri.Reports).ThenInclude(r => r.SmsQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.VoiceQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.HttpQuality)
