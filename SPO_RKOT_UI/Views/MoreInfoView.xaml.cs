@@ -1,5 +1,4 @@
-﻿using SpoRkotLibrary.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SPO_RKOT_UI.Views
 {
     /// <summary>
-    /// Логика взаимодействия для InformationView.xaml
+    /// Логика взаимодействия для MoreInfoView.xaml
     /// </summary>
-    public partial class InformationView : UserControl
+    public partial class MoreInfoView : Window
     {
-        public InformationView()
+        public MoreInfoView()
         {
             InitializeComponent();
-        }
-
-        private void MoreInfoButton_Click(object sender, RoutedEventArgs e)
-        {
-            var infoView = new MoreInfoView();
-            infoView.ShowDialog();
         }
     }
 }

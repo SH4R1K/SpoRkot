@@ -1,26 +1,15 @@
-﻿using Microsoft.Office.Interop.Excel;
-using Microsoft.VisualBasic.ApplicationServices;
+﻿using ExcelLibrary;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
-using SPO_RKOT_UI.ClassWork;
 using SPO_RKOT_UI.ViewModels;
 using SpoRkotLibrary.Data;
 using SpoRkotLibrary.Models;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SPO_RKOT_UI.Views
 {
@@ -29,41 +18,46 @@ namespace SPO_RKOT_UI.Views
     /// </summary>
     public partial class HomeView : UserControl
     {
+        HomeViewModel homeViewModel = new HomeViewModel();
         public HomeView()
         {
             InitializeComponent();
-            var homeViewModel = new HomeViewModel();
+
             DataContext = homeViewModel;
-
-
         }
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO поиск, справка, тема
-            var fileName = "";
+            string fileName;
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm;|All Files|*.*";  
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm;|All Files|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
                 fileName = openFileDialog.FileName;
-                ExcelReader.ImportFromExcel(fileName);
+                if (ExcelReader.ImportFromExcel(fileName))
+                    MessageBox.Show("Отчет успешно добавлен.");
+                else
+                    MessageBox.Show("Отчет с такими данными уже есть");
             }
-                MessageBox.Show("Работает");
         }
 
-        private void FindTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            reportsListView.Items.Filter = FilterMethod; //поиск по listview
-        }
-
-        private bool FilterMethod(object obj)
-        {
-            var user = (ReportInfo)obj;
-            return user.Location.Contains(findTextBox.Text, StringComparison.OrdinalIgnoreCase);
-        }
 
         private void UserList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            OpenTableView();
+        }
+
+        private void WatchButtonInRow_Click(object sender, RoutedEventArgs e)
+        {
+            ReportInfo report = (sender as System.Windows.Controls.Button)?.DataContext as ReportInfo;
+
+            //ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
+            var dataBase = new DataBaseViewWindow(report);
+            dataBase.ShowDialog();
+        }
+
+        private void OpenTableView()
         {
             if (reportsListView.SelectedItem == null) return;
             ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
@@ -73,7 +67,7 @@ namespace SPO_RKOT_UI.Views
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("обновление заглушка");
+            homeViewModel.Update();
         }
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
@@ -86,6 +80,29 @@ namespace SPO_RKOT_UI.Views
             {
                 SelectFileButton_Click(sender, e);
             }
+        }
+
+        //filtration
+        private void FindLocationTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            reportsListView.Items.Filter = FilterLocationMethod; //поиск по listview
+        }
+
+        private bool FilterLocationMethod(object obj)
+        {
+            var user = (ReportInfo)obj;
+            return user.Location.Contains(findLocationTextBox.Text, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void FindDistrictTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            reportsListView.Items.Filter = FilterDistrictMethod; //поиск по listview
+        }
+
+        private bool FilterDistrictMethod(object obj)
+        {
+            var user = (ReportInfo)obj;
+            return user.FederalDistrict.Contains(findDistrictTextBox.Text, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

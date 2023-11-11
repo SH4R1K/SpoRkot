@@ -203,23 +203,7 @@
                 <WrapPanel Orientation="Horizontal"
                         VerticalAlignment="Top"
                         Grid.Column="0">
-                    <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
-                <TextBox Text=""   
-                         FontSize="13"
-                         Height="24"
-                         Width="200"
-                         Background="Transparent"
-                         FontWeight="Medium"
-                         FontFamily="Montserrat"                            
-                         Foreground="{StaticResource plainTextColor3}"
-                         CaretBrush="{StaticResource plainTextColor3}"
-                         BorderBrush="{StaticResource plainTextColor3}"
-                         BorderThickness="0,0,0,1"                             
-                         VerticalContentAlignment="Center"
-                         Margin="5,5,0,0"
-                         TextChanged="FindTextBox_TextChanged"
-                         x:Name="findTextBox"/>
-
+                    
                 <Button Grid.Column="1"                           
                     Content="Обновить список"                            
                     FontSize="12"
@@ -268,19 +252,50 @@
                         VerticalAlignment="Top"
                         Grid.Column="0">
                     <StackPanel>
-                        <TextBlock Text="Округ"
-                            Style="{StaticResource labelDefault}"/>
-                        <ComboBox>
-                            <ComboBoxItem Content="Центральный"/>
-                            <ComboBoxItem Content="Северо-Западный"/>
-                            <ComboBoxItem Content="Южный"/>
-                            <ComboBoxItem Content="Приволжский"/>
-                            <ComboBoxItem Content="Уральский"/>
-                            <ComboBoxItem Content="Сибирский"/>
-                            <ComboBoxItem Content="Дальневосточный"/>
-                            <ComboBoxItem Content="Северо-Кавказский"/>
-                        </ComboBox>
-                    </StackPanel>                    
+                        <TextBlock Text="Округ" Style="{StaticResource labelDefault}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
+                        <TextBox Text=""   
+                             FontSize="13"
+                             Height="24"
+                             Width="100"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="{StaticResource plainTextColor3}"
+                             CaretBrush="{StaticResource plainTextColor3}"
+                             BorderBrush="{StaticResource plainTextColor3}"
+                             BorderThickness="0,0,0,1"                             
+                             VerticalContentAlignment="Center"
+                             Margin="5,5,0,0"
+                             TextChanged="FindDistrictTextBox_TextChanged"
+                             x:Name="findDistrictTextBox"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    <Separator Margin="20"/>
+                    <StackPanel>
+                        <TextBlock Text="Область" Style="{StaticResource labelDefault}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
+                            <TextBox Text=""   
+                             FontSize="13"
+                             Height="24"
+                             Width="200"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="{StaticResource plainTextColor3}"
+                             CaretBrush="{StaticResource plainTextColor3}"
+                             BorderBrush="{StaticResource plainTextColor3}"
+                             BorderThickness="0,0,0,1"                             
+                             VerticalContentAlignment="Center"
+                             Margin="5,5,0,0"
+                             TextChanged="FindLocationTextBox_TextChanged"
+                             x:Name="findLocationTextBox"/>
+                        </StackPanel>
+
+                    </StackPanel>
                 </WrapPanel>
             </ScrollViewer>
         </Grid>
@@ -366,15 +381,17 @@
                         <GridViewColumn Header="Период проведения контроля">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Добавить"
+                                    <Button Content="Открыть"
                                         Style="{StaticResource buttonDefaulStyle}"
                                             Padding="0"
                                             Margin="0"
-                                            Width="90"
-                                            Foreground="{StaticResource titleColor1}"/>
+                                            Width="100"
+                                            Foreground="{StaticResource titleColor1}"
+                                            Click="WatchButtonInRow_Click"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        
                     </GridView>
                 </ListView.View>
                 <ListView.ContextMenu>

@@ -1,5 +1,4 @@
-﻿using Microsoft.Office.Interop.Excel;
-using SpoRkotLibrary.Data;
+﻿using SpoRkotLibrary.Data;
 using SpoRkotLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -8,21 +7,29 @@ using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 
 
-namespace SPO_RKOT_UI.ClassWork
+namespace ExcelLibrary
 {
     public static class ExcelReader
     {
-        public static void ImportFromExcel(string fileName)
+        public static bool ImportFromExcel(string fileName)
         {
             using (var context = new RkotContext())
             {
                 var reportInfos = context.ReportInfos;
 
                 var reportInfo = LoadDataFromExcel(fileName);
+                if (reportInfos.FirstOrDefault(ri=> ri.StartDate == reportInfo.StartDate 
+                    && ri.EndDate == reportInfo.EndDate
+                    && ri.Location == reportInfo.Location
+                    && ri.FederalDistrict == reportInfo.FederalDistrict) != null)
+                {
+                    return false;
+                }
 
                 reportInfos.Add(reportInfo);
 
                 context.SaveChanges();
+                return true;
             }
         }
 

@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ExcelLibrary\ExcelLibrary.csproj" />
     <ProjectReference Include="..\SpoRkotLibrary\SpoRkotLibrary.csproj" />
   </ItemGroup>
 
