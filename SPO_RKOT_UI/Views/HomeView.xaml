@@ -270,15 +270,15 @@
                     <StackPanel>
                         <TextBlock Text="Округ"
                             Style="{StaticResource labelDefault}"/>
-                        <ComboBox>
-                            <ComboBoxItem Content="Центральный"/>
-                            <ComboBoxItem Content="Северо-Западный"/>
-                            <ComboBoxItem Content="Южный"/>
-                            <ComboBoxItem Content="Приволжский"/>
-                            <ComboBoxItem Content="Уральский"/>
-                            <ComboBoxItem Content="Сибирский"/>
-                            <ComboBoxItem Content="Дальневосточный"/>
-                            <ComboBoxItem Content="Северо-Кавказский"/>
+                        <ComboBox x:Name="comboBox">
+                            <ComboBoxItem Content="ЦФО"/>
+                            <ComboBoxItem Content="СЗФО"/>
+                            <ComboBoxItem Content="ЮФО"/>
+                            <ComboBoxItem Content="ПФО"/>
+                            <ComboBoxItem Content="УФО"/>
+                            <ComboBoxItem Content="СФО"/>
+                            <ComboBoxItem Content="ДФО"/>
+                            <ComboBoxItem Content="СКФО"/>
                         </ComboBox>
                     </StackPanel>                    
                 </WrapPanel>
