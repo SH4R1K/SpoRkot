@@ -17,6 +17,8 @@
             <Setter Property="Padding" Value="10,0,0,10"/>
             <Setter Property="FontFamily" Value="Montserrat"/>
             <Setter Property="FontSize" Value="15"/>
+            <Setter Property="BorderThickness" Value="0,0,0,0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
         </Style>
 
             <Style TargetType="DataGridCell">
@@ -257,6 +259,8 @@
                                            
                                         </Style>
                                 </DataGrid.CellStyle>
+                                
+                                
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Operator.Name}" ClipboardContentBinding="{x:Null}" Header="Оператор" HeaderStringFormat=""/>
                                         <DataGridTextColumn Header="" IsReadOnly="True"/>

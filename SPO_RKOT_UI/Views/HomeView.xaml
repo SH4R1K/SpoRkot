@@ -367,7 +367,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         
-                        <GridViewColumn Header="Период проведения контроля">
+                        <GridViewColumn Header="Просмотреть">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="Открыть"
