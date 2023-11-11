@@ -49,7 +49,7 @@ namespace SPO_RKOT_UI.Views
                 fileName = openFileDialog.FileName;
                 ExcelReader.ImportFromExcel(fileName);
             }
-                MessageBox.Show("Работает");
+                MessageBox.Show("Работает без прикола!");
         }
 
         private void FindTextBox_TextChanged(object sender, TextChangedEventArgs e)
