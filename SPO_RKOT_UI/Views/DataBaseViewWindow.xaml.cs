@@ -29,6 +29,17 @@ namespace SPO_RKOT_UI.Views
             ReportInfo = reportInfo;
             DataContext = ReportInfo;
             excelDataGrid.ItemsSource = ReportInfo.Reports;
+            List<DataGridColumn> dataGridColumns = new List<DataGridColumn>();
+            foreach (DataGridColumn dataGridColumn in excelDataGrid.Columns)
+            {
+                dataGridColumns.Add(dataGridColumn);
+            }
+            excelDataGrid.Columns.Clear();
+            dataGridColumns.Reverse();
+            foreach (DataGridColumn dataGridColumn in dataGridColumns)
+            {
+                excelDataGrid.Columns.Add(dataGridColumn);
+            }
         }
 
         public ReportInfo ReportInfo { get; set; }
@@ -74,6 +85,18 @@ namespace SPO_RKOT_UI.Views
                 context.Update(ReportInfo);
                 context.SaveChanges();
             }
+        }
+        private void dgridScrollViewer_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Add MouseWheel support for the datagrid scrollviewer.
+            excelDataGrid.AddHandler(MouseWheelEvent, new RoutedEventHandler(DataGridMouseWheelHorizontal), true);
+        }
+        private void DataGridMouseWheelHorizontal(object sender, RoutedEventArgs e)
+        {
+            MouseWheelEventArgs eargs = (MouseWheelEventArgs)e;
+            double x = (double)eargs.Delta;
+            double y = dgridScrollViewer.VerticalOffset;
+            dgridScrollViewer.ScrollToVerticalOffset(y - x);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
