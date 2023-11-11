@@ -11,7 +11,6 @@ namespace SPO_RKOT_UI.ViewModels
     {
         public ObservableCollection<ReportInfo> ReportsFromDB { get; set; }
 
-
         public ICommand ShowDataBaseViewWindowCommand { get; }
         public HomeViewModel()
         {
@@ -22,9 +21,8 @@ namespace SPO_RKOT_UI.ViewModels
                     .Include(ri => ri.Reports).ThenInclude(r => r.VoiceQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.HttpQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.Operator);
-                ReportsFromDB = new ObservableCollection<ReportInfo>(reportInfos.ToList());
-            }// получаем список репортов из класса для работы с бд
-
+                ReportsFromDB = new ObservableCollection<ReportInfo>(reportInfos.ToList());// получаем список репортов из класса для работы с бд
+            }
             ShowDataBaseViewWindowCommand = new ViewModelCommand(ShowDataBaseViewWindow);
         }
 

@@ -52,16 +52,6 @@ namespace SPO_RKOT_UI.Views
                 MessageBox.Show("Работает без прикола!");
         }
 
-        private void FindTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            reportsListView.Items.Filter = FilterMethod; //поиск по listview
-        }
-
-        private bool FilterMethod(object obj)
-        {
-            var user = (ReportInfo)obj;
-            return user.Location.Contains(findTextBox.Text, StringComparison.OrdinalIgnoreCase);
-        }
 
         private void UserList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -86,6 +76,28 @@ namespace SPO_RKOT_UI.Views
             {
                 SelectFileButton_Click(sender, e);
             }
+        }
+
+        private void FindLocationTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            reportsListView.Items.Filter = FilterLocationMethod; //поиск по listview
+        }
+
+        private bool FilterLocationMethod(object obj)
+        {
+            var user = (ReportInfo)obj;
+            return user.Location.Contains(findLocationTextBox.Text, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void FindDistrictTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            reportsListView.Items.Filter = FilterDistrictMethod; //поиск по listview
+        }
+
+        private bool FilterDistrictMethod(object obj)
+        {
+            var user = (ReportInfo)obj;
+            return user.FederalDistrict.Contains(findDistrictTextBox.Text, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

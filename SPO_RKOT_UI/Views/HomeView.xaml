@@ -203,23 +203,7 @@
                 <WrapPanel Orientation="Horizontal"
                         VerticalAlignment="Top"
                         Grid.Column="0">
-                    <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
-                <TextBox Text=""   
-                         FontSize="13"
-                         Height="24"
-                         Width="200"
-                         Background="Transparent"
-                         FontWeight="Medium"
-                         FontFamily="Montserrat"                            
-                         Foreground="{StaticResource plainTextColor3}"
-                         CaretBrush="{StaticResource plainTextColor3}"
-                         BorderBrush="{StaticResource plainTextColor3}"
-                         BorderThickness="0,0,0,1"                             
-                         VerticalContentAlignment="Center"
-                         Margin="5,5,0,0"
-                         TextChanged="FindTextBox_TextChanged"
-                         x:Name="findTextBox"/>
-
+                    
                 <Button Grid.Column="1"                           
                     Content="Обновить список"                            
                     FontSize="12"
@@ -268,19 +252,50 @@
                         VerticalAlignment="Top"
                         Grid.Column="0">
                     <StackPanel>
-                        <TextBlock Text="Округ"
-                            Style="{StaticResource labelDefault}"/>
-                        <ComboBox x:Name="comboBox">
-                            <ComboBoxItem Content="ЦФО"/>
-                            <ComboBoxItem Content="СЗФО"/>
-                            <ComboBoxItem Content="ЮФО"/>
-                            <ComboBoxItem Content="ПФО"/>
-                            <ComboBoxItem Content="УФО"/>
-                            <ComboBoxItem Content="СФО"/>
-                            <ComboBoxItem Content="ДФО"/>
-                            <ComboBoxItem Content="СКФО"/>
-                        </ComboBox>
-                    </StackPanel>                    
+                        <TextBlock Text="Округ" Style="{StaticResource labelDefault}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
+                        <TextBox Text=""   
+                             FontSize="13"
+                             Height="24"
+                             Width="100"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="{StaticResource plainTextColor3}"
+                             CaretBrush="{StaticResource plainTextColor3}"
+                             BorderBrush="{StaticResource plainTextColor3}"
+                             BorderThickness="0,0,0,1"                             
+                             VerticalContentAlignment="Center"
+                             Margin="5,5,0,0"
+                             TextChanged="FindDistrictTextBox_TextChanged"
+                             x:Name="findDistrictTextBox"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    <Separator Margin="20"/>
+                    <StackPanel>
+                        <TextBlock Text="Область" Style="{StaticResource labelDefault}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
+                            <TextBox Text=""   
+                             FontSize="13"
+                             Height="24"
+                             Width="200"
+                             Background="Transparent"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="{StaticResource plainTextColor3}"
+                             CaretBrush="{StaticResource plainTextColor3}"
+                             BorderBrush="{StaticResource plainTextColor3}"
+                             BorderThickness="0,0,0,1"                             
+                             VerticalContentAlignment="Center"
+                             Margin="5,5,0,0"
+                             TextChanged="FindLocationTextBox_TextChanged"
+                             x:Name="findLocationTextBox"/>
+                        </StackPanel>
+
+                    </StackPanel>
                 </WrapPanel>
             </ScrollViewer>
         </Grid>
