@@ -1,26 +1,15 @@
-﻿using Microsoft.Office.Interop.Excel;
-using Microsoft.VisualBasic.ApplicationServices;
+﻿using ExcelLibrary;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
-using ExcelLibrary;
 using SPO_RKOT_UI.ViewModels;
 using SpoRkotLibrary.Data;
 using SpoRkotLibrary.Models;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SPO_RKOT_UI.Views
 {
@@ -29,27 +18,26 @@ namespace SPO_RKOT_UI.Views
     /// </summary>
     public partial class HomeView : UserControl
     {
+        HomeViewModel homeViewModel = new HomeViewModel();
         public HomeView()
         {
             InitializeComponent();
-            var homeViewModel = new HomeViewModel();
+
             DataContext = homeViewModel;
-
-
         }
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO поиск, справка, тема
-            var fileName = "";
+            string fileName;
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm;|All Files|*.*";  
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm;|All Files|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
                 fileName = openFileDialog.FileName;
                 ExcelReader.ImportFromExcel(fileName);
             }
-                MessageBox.Show("Работает без прикола!");
+            MessageBox.Show("Работает без прикола!");
         }
 
         private void FindTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -73,7 +61,7 @@ namespace SPO_RKOT_UI.Views
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("обновление заглушка");
+            homeViewModel.Update();
         }
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
