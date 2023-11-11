@@ -40,18 +40,22 @@ namespace SPO_RKOT_UI.Views
             MessageBox.Show("Работает без прикола!");
         }
 
-        private void FindTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            reportsListView.Items.Filter = FilterMethod; //поиск по listview
-        }
-
-        private bool FilterMethod(object obj)
-        {
-            var user = (ReportInfo)obj;
-            return user.Location.Contains(findTextBox.Text, StringComparison.OrdinalIgnoreCase);
-        }
 
         private void UserList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            OpenTableView();
+        }
+
+        private void WatchButtonInRow_Click(object sender, RoutedEventArgs e)
+        {
+            ReportInfo report = (sender as System.Windows.Controls.Button)?.DataContext as ReportInfo;
+
+            //ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
+            var dataBase = new DataBaseViewWindow(report);
+            dataBase.ShowDialog();
+        }
+
+        private void OpenTableView()
         {
             if (reportsListView.SelectedItem == null) return;
             ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
@@ -74,6 +78,29 @@ namespace SPO_RKOT_UI.Views
             {
                 SelectFileButton_Click(sender, e);
             }
+        }
+
+        //filtration
+        private void FindLocationTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            reportsListView.Items.Filter = FilterLocationMethod; //поиск по listview
+        }
+
+        private bool FilterLocationMethod(object obj)
+        {
+            var user = (ReportInfo)obj;
+            return user.Location.Contains(findLocationTextBox.Text, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void FindDistrictTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            reportsListView.Items.Filter = FilterDistrictMethod; //поиск по listview
+        }
+
+        private bool FilterDistrictMethod(object obj)
+        {
+            var user = (ReportInfo)obj;
+            return user.FederalDistrict.Contains(findDistrictTextBox.Text, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
