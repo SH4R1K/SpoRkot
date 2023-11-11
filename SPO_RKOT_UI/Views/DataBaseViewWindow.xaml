@@ -270,7 +270,7 @@
                                         <DataGridTextColumn Binding="{Binding SmsQuality.ShareUndelivered}" ClipboardContentBinding="{x:Null}" Header="Доля недоставленных SMS сообщений [%]"/>
                                         <DataGridTextColumn Binding="{Binding SmsQuality.AverageDeliveryTime}" ClipboardContentBinding="{x:Null}" Header="Среднее время доставки SMS сообщений [сек]"/>
                                         <DataGridTextColumn Header="" IsReadOnly="True"/>
-                                        <DataGridTextColumn Header="Показатели качества услуг связи по передаче данных, за исключением услуг связи по передаче данных для целей передачи голосовой информации" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Показатели качества услуг связи по передаче данных, за исключением голосовой информации" IsReadOnly="True"/>
                                         <DataGridTextColumn Binding="{Binding HttpQuality.SessionFailureRatio}" ClipboardContentBinding="{x:Null}" Header="Доля неуспешных сессий по протоколу HTTP (HTTP Session Failure Ratio) [%]"/>
                                         <DataGridTextColumn Binding="{Binding HttpQuality.ULMeanUserDataRate}" ClipboardContentBinding="{x:Null}" Header="Среднее значение скорости передачи данных от абонента (HTTP UL Mean User Data Rate) [kbit/sec]"/>
                                         <DataGridTextColumn Binding="{Binding HttpQuality.DLMeanUserDataRate}" ClipboardContentBinding="{x:Null}" Header="Среднее значение скорости передачи данных к абоненту (HTTP DL Mean User Data Rate) [kbit/sec]"/>
