@@ -5,6 +5,7 @@ using SPO_RKOT_UI.ViewModels;
 using SpoRkotLibrary.Data;
 using SpoRkotLibrary.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -19,6 +20,7 @@ namespace SPO_RKOT_UI.Views
     public partial class HomeView : UserControl
     {
         HomeViewModel homeViewModel = new HomeViewModel();
+                 
         public HomeView()
         {
             InitializeComponent();
@@ -28,7 +30,6 @@ namespace SPO_RKOT_UI.Views
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO поиск, справка, тема
             string fileName;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm;|All Files|*.*";
@@ -51,8 +52,6 @@ namespace SPO_RKOT_UI.Views
         private void WatchButtonInRow_Click(object sender, RoutedEventArgs e)
         {
             ReportInfo report = (sender as System.Windows.Controls.Button)?.DataContext as ReportInfo;
-
-            //ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
             var dataBase = new DataBaseViewWindow(report);
             dataBase.ShowDialog();
         }
@@ -84,8 +83,8 @@ namespace SPO_RKOT_UI.Views
 
         //filtration
         private void FindLocationTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            reportsListView.Items.Filter = FilterLocationMethod; //поиск по listview
+        {            
+            reportsListView.Items.Filter = FiltersMethod; //поиск по listview
         }
 
         private bool FilterLocationMethod(object obj)
@@ -96,7 +95,7 @@ namespace SPO_RKOT_UI.Views
 
         private void FindDistrictTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            reportsListView.Items.Filter = FilterDistrictMethod; //поиск по listview
+            reportsListView.Items.Filter = FiltersMethod; //поиск по listview
         }
 
         private bool FilterDistrictMethod(object obj)
@@ -107,13 +106,34 @@ namespace SPO_RKOT_UI.Views
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            reportsListView.Items.Filter = FilterDateMethod; //поиск по listview
+            reportsListView.Items.Filter = FiltersMethod; //поиск по listview
         }
 
         private bool FilterDateMethod(object obj)
         {
             var report = (ReportInfo)obj;
             return report.StartDate >= startDatePicker.DisplayDate && report.EndDate <= endDatePicker.DisplayDate;
+        }
+
+        private bool FiltersMethod(object obj)
+        {
+            var report = (ReportInfo)obj;
+
+            bool startDateFilter = !startDatePicker.SelectedDate.HasValue || report.StartDate >= startDatePicker.SelectedDate.Value;
+            bool endDateFilter = !endDatePicker.SelectedDate.HasValue || report.EndDate <= endDatePicker.SelectedDate.Value;
+            bool districtFilter = string.IsNullOrEmpty(findDistrictTextBox.Text) || report.FederalDistrict.Contains(findDistrictTextBox.Text, StringComparison.OrdinalIgnoreCase);
+            bool locationFilter = string.IsNullOrEmpty(findLocationTextBox.Text) || report.Location.Contains(findLocationTextBox.Text, StringComparison.OrdinalIgnoreCase);
+
+            return startDateFilter && endDateFilter && districtFilter && locationFilter;
+        }
+
+        private void ClearFiltersButton_Click(object sender, RoutedEventArgs e)
+        {
+            findLocationTextBox.Text = string.Empty;
+            findDistrictTextBox.Text = string.Empty;
+            endDatePicker.SelectedDate = null;
+            startDatePicker.SelectedDate = null;
+            reportsListView.Items.Filter = FiltersMethod;
         }
     }
 }
