@@ -236,7 +236,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Disabled">
                 <WrapPanel Orientation="Horizontal"
                         VerticalAlignment="Top"
                         Grid.Column="0">
@@ -269,20 +270,20 @@
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
                             <TextBox Text=""   
-                             FontSize="13"
-                             Height="24"
-                             Width="200"
-                             Background="Transparent"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"                            
-                             Foreground="{StaticResource plainTextColor3}"
-                             CaretBrush="{StaticResource plainTextColor3}"
-                             BorderBrush="{StaticResource plainTextColor3}"
-                             BorderThickness="0,0,0,1"                             
-                             VerticalContentAlignment="Center"
-                             Margin="5,5,0,0"
-                             TextChanged="FindLocationTextBox_TextChanged"
-                             x:Name="findLocationTextBox"/>
+                                 FontSize="13"
+                                 Height="24"
+                                 Width="200"
+                                 Background="Transparent"
+                                 FontWeight="Medium"
+                                 FontFamily="Montserrat"                            
+                                 Foreground="{StaticResource plainTextColor3}"
+                                 CaretBrush="{StaticResource plainTextColor3}"
+                                 BorderBrush="{StaticResource plainTextColor3}"
+                                 BorderThickness="0,0,0,1"                             
+                                 VerticalContentAlignment="Center"
+                                 Margin="5,5,0,0"
+                                 TextChanged="FindLocationTextBox_TextChanged"
+                                 x:Name="findLocationTextBox"/>
                         </StackPanel>
                     </StackPanel>
 

@@ -4,14 +4,135 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPO_RKOT_UI.Views"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="Предупреждение" Height="200" Width="500" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
-    <Grid>
+         Height="200" Width="500" Closing="Window_Closing" WindowStartupLocation="CenterScreen"
+        Title="Данные отчета" 
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <!--<Grid>
         <TextBlock Text="Сохранить изменения перед выходом?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,20,0,0">
             <Button Content="Да" Margin="10" Click="YesButton_Click" Width="100"/>
             <Button Content="Нет" Margin="10" Click="NoButton_Click" Width="100"/>
             <Button Content="Отмена" Margin="10" Click="CancelButton_Click" Width="100"/>
         </StackPanel>
-    </Grid>
+    </Grid>-->
+    <Border CornerRadius="10"                    
+            BorderThickness="1"
+            BorderBrush="{StaticResource dangerColor}">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <!--Navigation menu-->
+                <ColumnDefinition Width="0"/>
+                <!--Content section-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Main Section-->
+            <Border CornerRadius="0,10,10,0"
+                    Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!--Control bar-->
+                        <RowDefinition Height="25"/>
+                        <!--Header / Caption-->
+                        <RowDefinition Height="35"/>
+                        <!--Content section / Child views-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Control bar-->
+                    <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseLeftButtonDown="PanelControlBar_MouseLeftButtonDown"
+                                MouseEnter="PanelControlBar_MouseEnter">
+                        <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color4}"
+                                Click="CancelButton_Click">
+                            <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
+                        </Button>
+                    </StackPanel>
+
+                    <!--Header / Caption-->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="639*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Caption-->
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <fa:IconImage Icon="Warning"
+                                          Height="20"
+                                          Width="20"
+                                          Foreground="{StaticResource titleColor2}"
+                                          Margin="35,0,10,0"/>
+
+                            <TextBlock Text="Сохранить Изменения?"
+                                       Foreground="{StaticResource titleColor2}"
+                                       FontSize="16"
+                                       FontFamily="Montserrat"
+                                       FontWeight="Medium"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--CONTENT-->
+
+                    <Grid Grid.Row="2" Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+                                <Button Content="Да" Margin="10" Click="YesButton_Click" 
+                                        Style="{StaticResource buttonDefaulStyle}"
+                                        Width="60"
+                                        Background="{StaticResource greenColor}"
+                                        Foreground="{StaticResource panelColor}"
+                                        FontSize="16"/>
+                                <Button Content="Нет" Margin="10" Click="NoButton_Click" 
+                                        Style="{StaticResource buttonDefaulStyle}"
+                                        Width="60"
+                                        Foreground="{StaticResource panelColor}"
+                                        Background="{StaticResource plainTextColor1}"
+                                        FontSize="16"/>
+                                <Button Content="Отмена" Margin="10" Click="CancelButton_Click" 
+                                        Style="{StaticResource buttonDefaulStyle}"
+                                        Width="90"
+                                        Foreground="{StaticResource panelColor}"
+                                        Background="{StaticResource plainTextColor1}"
+                                        FontSize="16"/>
+                            </StackPanel>
+
+
+
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
 </Window>
+
