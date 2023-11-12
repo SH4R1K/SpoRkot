@@ -28,28 +28,28 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Сервер"
                                Style="{StaticResource InformationTextBlock}"
-                               Padding="5" Width="100"/>
+                               Padding="5" Width="150"/>
                     <TextBox Text="{Binding Source={x:Static p:Settings.Default}, Path=server, Mode=TwoWay}" Style="{StaticResource defaultTextBox}" Width="400"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="База данных"
                                Style="{StaticResource InformationTextBlock}"
-                               Padding="5" Width="100"/>
+                               Padding="5" Width="150"/>
                     <TextBox Text="{Binding Source={x:Static p:Settings.Default}, Path=database, Mode=TwoWay}" Style="{StaticResource defaultTextBox}" Width="400"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Логин"
                                Style="{StaticResource InformationTextBlock}"
-                               Padding="5" Width="100"/>
+                               Padding="5" Width="150"/>
                     <TextBox Text="{Binding Source={x:Static p:Settings.Default}, Path=login, Mode=TwoWay}" Style="{StaticResource defaultTextBox}" Width="400"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Пароль"
                                Style="{StaticResource InformationTextBlock}"
-                               Padding="5" Width="100"/>
+                               Padding="5" Width="150"/>
                     <TextBox Text="{Binding Source={x:Static p:Settings.Default}, Path=password, Mode=TwoWay}" Style="{StaticResource defaultTextBox}" Width="400"/>
                 </StackPanel>
                 
