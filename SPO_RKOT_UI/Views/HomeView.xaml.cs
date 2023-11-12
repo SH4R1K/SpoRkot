@@ -206,5 +206,10 @@ namespace SPO_RKOT_UI.Views
                 MessageBox.Show($"Неизвестная Ошибка: \n{ex}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void DeleteReportButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

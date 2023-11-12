@@ -362,8 +362,8 @@
                         <GridViewColumn DisplayMemberBinding="{Binding FederalDistrict}" 
                                         Header="Федеральный округ"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Location}" Header="Место проведения контроля"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding StartDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата начала контроля"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding EndDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата завершения контроля"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding StartDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата начала"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding EndDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата завершения"/>
                         <GridViewColumn Header="Просмотреть">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -374,6 +374,21 @@
                                             Width="100"
                                             Foreground="{StaticResource titleColor1}"
                                             Click="WatchButtonInRow_Click"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
+                        <GridViewColumn Header="Удалить">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Удалить"
+                                        Style="{StaticResource buttonDefaulStyle}"
+                                            Padding="0"
+                                            Margin="0"
+                                            Width="100"
+                                            Foreground="{StaticResource titleColor1}"
+                                            Background="{StaticResource dangerColor}"
+                                            Click="DeleteReportButton_Click"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
