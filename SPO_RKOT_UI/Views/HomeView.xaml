@@ -372,8 +372,16 @@
                 </ListView.View>
                 <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Добавить новый отчет (CTRL + N)" Click="SelectFileButton_Click"/>
-                        <MenuItem Header="Обновить (F5)" Click="UpdateButton_Click"/>
+                        <MenuItem Header="Добавить новый отчет (CTRL + N)" Click="SelectFileButton_Click">
+                            <MenuItem.Icon>
+                                <Image Source="{StaticResource Images.plus}" ></Image>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Обновить (F5)" Click="UpdateButton_Click">
+                            <MenuItem.Icon>
+                                <Image Source="{StaticResource Images.refresh}" ></Image>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </ContextMenu>
                 </ListView.ContextMenu>
                 <ListView.Style>
