@@ -78,11 +78,19 @@ namespace SPO_RKOT_UI.Views
 
         private void ReportInfoSaveChanged()
         {
-            using (var context = new RkotContext())
+            try
             {
-                context.Update(ReportInfo);
-                context.SaveChanges();
+                using (var context = new RkotContext())
+                {
+                    context.Update(ReportInfo);
+                    context.SaveChanges();
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Проблема с сохранением. Данные не сохранены.");
+            }
+
         }
         private void DgridScrollViewer_Loaded(object sender, RoutedEventArgs e)
         {
@@ -108,7 +116,7 @@ namespace SPO_RKOT_UI.Views
                     ReportInfoSaveChanged();
                     MessageBox.Show("Данные сохранены");
                 }
-                else if(saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Cancel)
+                else if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Cancel)
                 {
                     e.Cancel = true;
                 }

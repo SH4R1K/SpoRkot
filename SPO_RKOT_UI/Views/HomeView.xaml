@@ -331,7 +331,8 @@
                 </ScrollViewer>
             </Border>
         </Grid>
-        
+
+        <TextBlock x:Name="messageTextBlock" Text="{Binding TextMessage}"/>
         <!--Data Grid-->
         <Border Grid.Row="2"
                 Background="{StaticResource panelColor}"
