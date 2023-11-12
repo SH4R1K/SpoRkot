@@ -3,8 +3,10 @@ using Microsoft.Win32;
 using SPO_RKOT_UI.ViewModels;
 using SpoRkotLibrary.Models;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace SPO_RKOT_UI.Views
@@ -15,19 +17,22 @@ namespace SPO_RKOT_UI.Views
     public partial class HomeView : UserControl
     {
         HomeViewModel homeViewModel = new HomeViewModel();
+
         public HomeView()
         {
             InitializeComponent();
 
             DataContext = homeViewModel;
+
+
         }
+
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO поиск, справка, тема
             string fileName;
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm;|All Files|*.*";
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;|All Files|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
                 fileName = openFileDialog.FileName;
@@ -38,7 +43,6 @@ namespace SPO_RKOT_UI.Views
             }
         }
 
-
         private void UserList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             OpenTableView();
@@ -46,9 +50,7 @@ namespace SPO_RKOT_UI.Views
 
         private void WatchButtonInRow_Click(object sender, RoutedEventArgs e)
         {
-            ReportInfo report = (sender as Button)?.DataContext as ReportInfo;
-
-            //ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
+            ReportInfo report = (sender as System.Windows.Controls.Button)?.DataContext as ReportInfo;
             var dataBase = new DataBaseViewWindow(report);
             dataBase.ShowDialog();
             homeViewModel.Update();
@@ -80,38 +82,112 @@ namespace SPO_RKOT_UI.Views
             }
         }
 
-        //filtration
+        //Filtration
         private void FindLocationTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            reportsListView.Items.Filter = FilterLocationMethod; //поиск по listview
-        }
-
-        private bool FilterLocationMethod(object obj)
-        {
-            var report = (ReportInfo)obj;
-            return report.Location.Contains(findLocationTextBox.Text, StringComparison.OrdinalIgnoreCase);
+            reportsListView.Items.Filter = FilterListView; //поиск по listview
         }
 
         private void FindDistrictTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            reportsListView.Items.Filter = FilterDistrictMethod; //поиск по listview
-        }
-
-        private bool FilterDistrictMethod(object obj)
-        {
-            var report = (ReportInfo)obj;
-            return report.FederalDistrict.Contains(findDistrictTextBox.Text, StringComparison.OrdinalIgnoreCase);
+            reportsListView.Items.Filter = FilterListView; //поиск по listview
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            reportsListView.Items.Filter = FilterDateMethod; //поиск по listview
+            reportsListView.Items.Filter = FilterListView; //поиск по listview
         }
 
-        private bool FilterDateMethod(object obj)
+        private bool FilterListView(object obj)
         {
             var report = (ReportInfo)obj;
-            return report.StartDate >= startDatePicker.DisplayDate && report.EndDate <= endDatePicker.DisplayDate;
+
+            bool startDateFilter = !startDatePicker.SelectedDate.HasValue || report.StartDate >= startDatePicker.SelectedDate.Value;
+            bool endDateFilter = !endDatePicker.SelectedDate.HasValue || report.EndDate <= endDatePicker.SelectedDate.Value;
+            bool districtFilter = string.IsNullOrEmpty(findDistrictTextBox.Text) || report.FederalDistrict.Contains(findDistrictTextBox.Text, StringComparison.OrdinalIgnoreCase);
+            bool locationFilter = string.IsNullOrEmpty(findLocationTextBox.Text) || report.Location.Contains(findLocationTextBox.Text, StringComparison.OrdinalIgnoreCase);
+
+            return startDateFilter && endDateFilter && districtFilter && locationFilter;
+        }
+
+        private void ClearFiltersButton_Click(object sender, RoutedEventArgs e)
+        {
+            findLocationTextBox.Text = string.Empty;
+            findDistrictTextBox.Text = string.Empty;
+            endDatePicker.SelectedDate = null;
+            startDatePicker.SelectedDate = null;
+            reportsListView.Items.Filter = FilterListView;
+        }
+
+
+        //Sorting
+
+        GridViewColumnHeader _lastHeaderClicked = null;
+        ListSortDirection _lastDirection = ListSortDirection.Ascending;
+
+        private void GridViewColumnHeaderClickedHandler(object sender, RoutedEventArgs e)
+        {
+            var headerClicked = e.OriginalSource as GridViewColumnHeader;
+            ListSortDirection direction;
+
+            if (headerClicked != null)
+            {
+                if (headerClicked.Role != GridViewColumnHeaderRole.Padding)
+                {
+                    if (headerClicked != _lastHeaderClicked)
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    else
+                    {
+                        if (_lastDirection == ListSortDirection.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            direction = ListSortDirection.Ascending;
+                        }
+                    }
+
+                    var columnBinding = headerClicked.Column.DisplayMemberBinding as Binding;
+                    var sortBy = columnBinding?.Path.Path ?? headerClicked.Column.Header as string;
+
+                    Sort(sortBy, direction);
+
+                    if (direction == ListSortDirection.Ascending)
+                    {
+                        headerClicked.Column.HeaderTemplate =
+                          Resources["HeaderTemplateArrowUp"] as DataTemplate;
+                    }
+                    else
+                    {
+                        headerClicked.Column.HeaderTemplate =
+                          Resources["HeaderTemplateArrowDown"] as DataTemplate;
+                    }
+
+                    // Remove arrow from previously sorted header
+                    if (_lastHeaderClicked != null && _lastHeaderClicked != headerClicked)
+                    {
+                        _lastHeaderClicked.Column.HeaderTemplate = null;
+                    }
+
+                    _lastHeaderClicked = headerClicked;
+                    _lastDirection = direction;
+                }
+
+            }
+        }
+
+        private void Sort(string sortBy, ListSortDirection direction)
+        {
+            ICollectionView dataView =
+              CollectionViewSource.GetDefaultView(reportsListView.ItemsSource);
+
+            dataView.SortDescriptions.Clear();
+            SortDescription sd = new SortDescription(sortBy, direction);
+            dataView.SortDescriptions.Add(sd);
+            dataView.Refresh();
         }
     }
 }

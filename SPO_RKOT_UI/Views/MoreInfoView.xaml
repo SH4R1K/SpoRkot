@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPO_RKOT_UI.Views"
         mc:Ignorable="d"
-        Title="MoreInfoView" Height="450" Width="800">
-    <Grid>
-        
+        Title="MoreInfoView" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize">
+    <Grid Background="{StaticResource panelColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseEnter="pnlControlBar_MouseEnter" 
+                    MouseLeftButtonDown="">
+            <Button x:Name="CloseButton"
+                    Style="{StaticResource controlButton}"
+                    Tag="{StaticResource color4}"
+                    Click="CloseButton_Click" >
+                
+            </Button>
+        </StackPanel>
+
+        <TextBlock Style="{StaticResource InformationTextBlock}" TextWrapping="Wrap" Grid.Row="1">
+            <Run FontWeight="Bold" FontSize="22"> Подробное описания работы "СПО РКОТ"</Run>
+            <LineBreak/>
+            <LineBreak/>
+             <Run FontWeight="Bold"> Назначение ПО </Run>
+            <LineBreak/>
+            Программное обеспечение "СПО РКОТ" обеспечивает процесс преобразования результатов
+измерений РКОТ из XLS-файла в Базу данных.
+            <LineBreak/>
+            <LineBreak/>
+            <Run FontWeight="Bold"> Начало работы </Run>
+            <LineBreak/>
+            Загрузите XLS/XLSX файл, с результатами измерений РКОТ, с помощью кнопки "Добавить отчет" в верхней части экрана, во вкладке
+            "Список отчётов", далее, чтобы добавленный отчёт отобразился в списке отчётов, обновите список с помощью кнопки "Обновить список".
+            <LineBreak/>
+            <LineBreak/>
+            <Run FontWeight="Bold"> Работа с существующими отчётами </Run>
+            <LineBreak/>
+            Вы можете сортировать их по округу, области и дате.
+            Для открытия отчёта нажмите на него 2 раза или на кнопку "Открыть". Откроется окно <Run FontWeight="Bold"> "Просмотр данных" </Run>.
+            <LineBreak/>
+            <LineBreak/>
+            <Run FontWeight="Bold"> Работа в окне "Просмотр данных" </Run>
+            <LineBreak/>
+            В нем вы можете просматривать, изменять и сохранять данные в базе данных текущего отчета.
+            Для сохранения изменений нажмите кнопку "Сохранить" в правой части  окна, для выхода нажмите кнопку "Отмена".
+        </TextBlock>
     </Grid>
 </Window>

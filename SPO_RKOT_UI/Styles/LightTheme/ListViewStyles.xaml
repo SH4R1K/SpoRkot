@@ -17,6 +17,7 @@
         <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsManipulationEnabled" Value="False" />
     </Style>
 
 </ResourceDictionary>
