@@ -68,13 +68,6 @@ namespace SPO_RKOT_UI.ViewModels
 
         private async Task LoadDataAsync()
         {
-            Properties.Settings.Default.login = "oleg";
-            Properties.Settings.Default.Save();
-
-            ConnectionManager.Login = Properties.Settings.Default.login;
-            ConnectionManager.DataBase = Properties.Settings.Default.database;
-            ConnectionManager.Password = Properties.Settings.Default.password;
-            ConnectionManager.Server = Properties.Settings.Default.server;
             using (var context = new RkotContext())
             {
                 try
