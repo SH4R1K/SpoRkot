@@ -1,9 +1,11 @@
 ﻿using ExcelLibrary;
 using Microsoft.Win32;
 using SPO_RKOT_UI.ViewModels;
+using SpoRkotLibrary.Data;
 using SpoRkotLibrary.Models;
 using System;
 using System.ComponentModel;
+using System.ComponentModel.Design.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -210,7 +212,17 @@ namespace SPO_RKOT_UI.Views
 
         private void DeleteReportButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var answer = MessageBox.Show("Вы уверены, что хотите удалить отчёт?", "Удаление отчёта",MessageBoxButton.YesNo,MessageBoxImage.Warning);
+            if (answer == MessageBoxResult.Yes)
+            {
+                using (var context = new RkotContext())
+                {
+                    ReportInfo report = (sender as Button)?.DataContext as ReportInfo;
+                    context.ReportInfos.Remove(report);
+                    context.SaveChanges();
+                    homeViewModel.Update();
+                }
+            }
         }
     }
 }

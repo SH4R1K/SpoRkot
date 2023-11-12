@@ -15,11 +15,10 @@ namespace ExcelLibrary
     public static class ExcelReader
     {
         /// <summary>
-        /// Метод для сравнения отчёта с уже добавленными отчётами
+        /// Импортирует excel-файл с отчетом в базу данных, если он такого не существует
         /// </summary>
-        /// <param name="fileName">XLS/XLSX файл</param>
-        /// <returns>Возвращает false если отчёт который пытаемся добавить уже существует
-        /// возвращает true если такого отчёта еще не было добавлено</returns>
+        /// <param name="fileName">Имя XLS/XLSX файла</param>
+        /// <returns>Возвращает false, если отчёт уже находится в базе данных, а true, если отчет нет в базе данных</returns>
         public async static Task<bool> ImportFromExcel(string fileName)
         {
             using (var context = new RkotContext())
@@ -43,10 +42,9 @@ namespace ExcelLibrary
         }
 
         /// <summary>
-        /// Метод для открыти excel файл 
+        /// Открывает excel-файл и считывает данные.
         /// </summary>
-        /// <param name="fileName">XLS/XLSX файл</param>
-        /// <returns></returns>
+        /// <param name="fileName">Имя XLS/XLSX файла</param>
         private static ReportInfo LoadDataFromExcel(string fileName)
         {
             var excelApp = new Excel.Application();
@@ -68,10 +66,9 @@ namespace ExcelLibrary
         }
 
         /// <summary>
-        /// Метод для выборки нужных данных из excel-файла
+        /// Считывает данные по ячейкам с листа excel-файла.
         /// </summary>
-        /// <param name="worksheet"></param>
-        /// <returns></returns>
+        /// <param name="worksheet">Лист для считывания данных</param>
         private static ReportInfo LoadDataFromCells(dynamic worksheet)
         {
             using var context = new RkotContext();
@@ -144,6 +141,11 @@ namespace ExcelLibrary
             return reportInfo;
         }
 
+        /// <summary>
+        /// Преобразует строку в аббревиатуру.
+        /// </summary>
+        /// <param name="inputString">Строка для преобразования</param>
+        /// <returns>Аббревеатура</returns>
         private static string GetAbbreveature(string inputString)
         {
             string abbreveature = "";
