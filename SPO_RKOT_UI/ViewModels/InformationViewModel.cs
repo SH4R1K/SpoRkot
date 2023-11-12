@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace SPO_RKOT_UI.ViewModels
 {
-    internal class InformationVieModel
+    /// <summary>
+    /// ViewModel для InformationView
+    /// </summary>
+    public class InformationViewModel : ViewModelBase
     {
     }
 }
