@@ -21,6 +21,7 @@
                 CornerRadius="10" 
                 Padding="10">
             <StackPanel>
+                
                 <TextBlock Text="Настройка подключения к Базе Данных"
                            Style="{StaticResource InformationTextBlock}"/>
                 <StackPanel Orientation="Horizontal">
@@ -50,16 +51,13 @@
                                Padding="5"/>
                     <TextBox Style="{StaticResource defaultTextBox}"/>
                 </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="login"
-                               Style="{StaticResource InformationTextBlock}"
-                               Padding="5"
-                               />
-                    <TextBox Style="{StaticResource defaultTextBox}"/>
-                </StackPanel>
+                
                 <Button Content="Применить"
-                        Click="SaveChangesButton_Click"/>
+                        Click="SaveChangesButton_Click"
+                        Style="{StaticResource buttonDefaulStyle}"
+                        Width="100"
+                        Foreground="{StaticResource titleColor1}"
+                        HorizontalAlignment="Left"/>
             </StackPanel>
         </Border>
     </Grid>
