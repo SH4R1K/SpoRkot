@@ -36,6 +36,9 @@
         <DataTemplate DataType="{x:Type viewModel:InformationViewModel}">
             <local:InformationView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+            <local:SettingsView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Border CornerRadius="10"                    
@@ -105,7 +108,17 @@
                                 <!--icon of menu btns-->
                                 <TextBlock Text="Справка" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
-                        </RadioButton>  
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowSettingsViewCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="Tools" Style="{StaticResource menuButtonIcon}"/>
+                                <!--icon of menu btns-->
+                                <TextBlock Text="Настройки" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                        </RadioButton>
                     </StackPanel>
                     <!--Exit Btn-->
                     <StackPanel Grid.Row="1"
