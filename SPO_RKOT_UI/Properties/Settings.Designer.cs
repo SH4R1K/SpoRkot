@@ -25,7 +25,7 @@ namespace SPO_RKOT_UI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("oleg")]
+        [global::System.Configuration.DefaultSettingValueAttribute("HahatunUser")]
         public string login {
             get {
                 return ((string)(this["login"]));
@@ -49,7 +49,7 @@ namespace SPO_RKOT_UI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SPO_RKOT")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SPO_RKOT_HaHaTun")]
         public string database {
             get {
                 return ((string)(this["database"]));
