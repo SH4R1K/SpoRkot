@@ -199,7 +199,7 @@
                                 CornerRadius="10" 
                                 Padding="10">
                             <ScrollViewer x:Name="dgridScrollViewer"
-                              Loaded="dgridScrollViewer_Loaded"
+                              Loaded="DgridScrollViewer_Loaded"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Auto">
                                 <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="excelDataGrid"

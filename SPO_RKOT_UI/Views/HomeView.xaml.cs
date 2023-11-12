@@ -1,8 +1,6 @@
 ﻿using ExcelLibrary;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using SPO_RKOT_UI.ViewModels;
-using SpoRkotLibrary.Data;
 using SpoRkotLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -54,6 +52,7 @@ namespace SPO_RKOT_UI.Views
             ReportInfo report = (sender as System.Windows.Controls.Button)?.DataContext as ReportInfo;
             var dataBase = new DataBaseViewWindow(report);
             dataBase.ShowDialog();
+            homeViewModel.Update();
         }
 
         private void OpenTableView()
@@ -62,6 +61,7 @@ namespace SPO_RKOT_UI.Views
             ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
             var dataBase = new DataBaseViewWindow(reportInfo);
             dataBase.ShowDialog();
+            homeViewModel.Update();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)

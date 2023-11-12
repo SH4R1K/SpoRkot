@@ -20,12 +20,10 @@ namespace SPO_RKOT_UI.ViewModels
                 OnPropertyChanged(nameof(ReportsFromDB));
             }
         }
-        public ICommand ShowDataBaseViewWindowCommand { get; }
 
         public HomeViewModel()
         {
             LoadData();
-            ShowDataBaseViewWindowCommand = new ViewModelCommand(ShowDataBaseViewWindow);
         }
 
         public void Update()
@@ -45,12 +43,6 @@ namespace SPO_RKOT_UI.ViewModels
                     .Include(ri => ri.Reports).ThenInclude(r => r.Operator);
                 ReportsFromDB = new ObservableCollection<ReportInfo>(reportInfos.ToList());
             }
-        }
-
-        private void ShowDataBaseViewWindow(object obj)
-        {
-            // var dataBase = new DataBaseViewWindow();
-            // dataBase.ShowDialog();
         }
     }
 }
