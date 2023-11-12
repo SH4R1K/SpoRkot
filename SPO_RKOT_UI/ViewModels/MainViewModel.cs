@@ -95,7 +95,7 @@ namespace SPO_RKOT_UI.ViewModels
         /// </summary>
         private void ExecuteShowInformationViewCommand(object obj)
         {
-            CurrentChildView = new ViewModelBase();
+            CurrentChildView = new InformationViewModel();
             Caption = "Справка";
             Icon = IconChar.Question;
         }
