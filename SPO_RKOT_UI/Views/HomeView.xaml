@@ -336,7 +336,8 @@
                                 Click="ClearFiltersButton_Click"
                                 Style="{StaticResource buttonDefaulStyle}"
                                 Foreground="{StaticResource titleColor1}"
-                                Width="150"/>
+                                Width="150"
+                                FontSize="14"/>
                     </WrapPanel>
                 </ScrollViewer>
             </Border>
@@ -381,14 +382,16 @@
                         <GridViewColumn Header="Удалить">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Удалить"
-                                        Style="{StaticResource buttonDefaulStyle}"
-                                            Padding="0"
-                                            Margin="0"
-                                            Width="100"
-                                            Foreground="{StaticResource titleColor1}"
-                                            Background="{StaticResource dangerColor}"
-                                            Click="DeleteReportButton_Click"/>
+                                    <Button x:Name="deleteButton"
+                                            Style="{StaticResource rowButtonStyle}"
+                                            Click="DeleteReportButton_Click"
+                                            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <fa:IconImage Icon="Trash" 
+                                                      Style="{StaticResource rowButtonIconStyle1}"
+                                                          HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
