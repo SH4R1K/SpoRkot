@@ -155,9 +155,9 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="С" Style="{StaticResource labelDefault}"/>
-                                    <DatePicker SelectedDate="{Binding StartDate}"  BorderThickness="0" Margin="3"/>
+                                    <DatePicker SelectedDate="{Binding StartDate}"  Style="{StaticResource defaultDatePicker}"/>
                                     <TextBlock Text="По" Style="{StaticResource labelDefault}"/>
-                                    <DatePicker SelectedDate="{Binding EndDate}" BorderThickness="0" Margin="3"/>
+                                    <DatePicker SelectedDate="{Binding EndDate}" Style="{StaticResource defaultDatePicker}"/>
                                 </StackPanel>
 
                             </StackPanel>

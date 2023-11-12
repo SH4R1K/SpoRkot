@@ -90,8 +90,8 @@ namespace SPO_RKOT_UI.Views
 
         private bool FilterLocationMethod(object obj)
         {
-            var user = (ReportInfo)obj;
-            return user.Location.Contains(findLocationTextBox.Text, StringComparison.OrdinalIgnoreCase);
+            var report = (ReportInfo)obj;
+            return report.Location.Contains(findLocationTextBox.Text, StringComparison.OrdinalIgnoreCase);
         }
 
         private void FindDistrictTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -101,8 +101,19 @@ namespace SPO_RKOT_UI.Views
 
         private bool FilterDistrictMethod(object obj)
         {
-            var user = (ReportInfo)obj;
-            return user.FederalDistrict.Contains(findDistrictTextBox.Text, StringComparison.OrdinalIgnoreCase);
+            var report = (ReportInfo)obj;
+            return report.FederalDistrict.Contains(findDistrictTextBox.Text, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            reportsListView.Items.Filter = FilterDateMethod; //поиск по listview
+        }
+
+        private bool FilterDateMethod(object obj)
+        {
+            var report = (ReportInfo)obj;
+            return report.StartDate >= startDatePicker.DisplayDate && report.EndDate <= endDatePicker.DisplayDate;
         }
     }
 }
