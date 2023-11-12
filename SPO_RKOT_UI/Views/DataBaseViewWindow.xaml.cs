@@ -37,7 +37,6 @@ namespace SPO_RKOT_UI.Views
                 excelDataGrid.Columns.Add(dataGridColumn);
             }
         }
-
         public ReportInfo ReportInfo { get; set; }
 
         [DllImport("user32.dll")]
@@ -85,7 +84,7 @@ namespace SPO_RKOT_UI.Views
                 context.SaveChanges();
             }
         }
-        private void dgridScrollViewer_Loaded(object sender, RoutedEventArgs e)
+        private void DgridScrollViewer_Loaded(object sender, RoutedEventArgs e)
         {
             // Add MouseWheel support for the datagrid scrollviewer.
             excelDataGrid.AddHandler(MouseWheelEvent, new RoutedEventHandler(DataGridMouseWheelHorizontal), true);

@@ -11,17 +11,11 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
-    <!--<Grid>
-        <TextBlock Text="Сохранить изменения перед выходом?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,20,0,0">
-            <Button Content="Да" Margin="10" Click="YesButton_Click" Width="100"/>
-            <Button Content="Нет" Margin="10" Click="NoButton_Click" Width="100"/>
-            <Button Content="Отмена" Margin="10" Click="CancelButton_Click" Width="100"/>
-        </StackPanel>
-    </Grid>-->
+    
+    
     <Border CornerRadius="10"                    
             BorderThickness="1"
-            BorderBrush="{StaticResource dangerColor}">
+            BorderBrush="{StaticResource plainTextColor3}">
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -83,7 +77,7 @@
                                           Foreground="{StaticResource titleColor2}"
                                           Margin="35,0,10,0"/>
 
-                            <TextBlock Text="Сохранить Изменения?"
+                            <TextBlock Text="Сохранить изменения?"
                                        Foreground="{StaticResource titleColor2}"
                                        FontSize="16"
                                        FontFamily="Montserrat"
