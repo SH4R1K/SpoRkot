@@ -10,7 +10,9 @@
         Title="SPO RKOT" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        MinHeight="720"
+        MinWidth="1024">
 
 
     <Window.DataContext>
@@ -43,7 +45,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <!--Navigation menu-->
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="200"/>
                 <!--Content section-->
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>

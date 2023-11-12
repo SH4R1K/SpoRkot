@@ -299,7 +299,7 @@
                                 <TextBox Text=""   
                                  FontSize="13"
                                  Height="24"
-                                 Width="200"
+                                 Width="190"
                                  Background="Transparent"
                                  FontWeight="Medium"
                                  FontFamily="Montserrat"                            
@@ -332,11 +332,11 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <Button Content="Очистить фильтры"
+                        <Button Content="Очистить"
                                 Click="ClearFiltersButton_Click"
                                 Style="{StaticResource buttonDefaulStyle}"
                                 Foreground="{StaticResource titleColor1}"
-                                Width="150"
+                                Width="100"
                                 FontSize="14"/>
                     </WrapPanel>
                 </ScrollViewer>
