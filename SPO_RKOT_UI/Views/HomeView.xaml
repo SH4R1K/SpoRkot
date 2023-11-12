@@ -369,7 +369,12 @@
                         
                     </GridView>
                 </ListView.View>
-                
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Добавить новый отчет (CTRL + N)" Click="SelectFileButton_Click"/>
+                        <MenuItem Header="Обновить (F5)" Click="UpdateButton_Click"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
                 <ListView.Style>
                     <Style TargetType="ListView">
                         <Setter Property="Background" Value="Transparent"/>
@@ -412,26 +417,6 @@
                         </Setter>
                     </Style>
                 </ListView.ItemContainerStyle>
-                
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Сортировка по возрастанию"/>
-                        <MenuItem Header="Сортировка по убыванию"/>
-                        <Separator />
-                        <MenuItem Header="Группировать по это колонке"/>
-                        <MenuItem Header="Скрыть облать группировки"/>
-                        <Separator />
-                        <MenuItem Header="Скрыть колонку"/>
-                        <MenuItem Header="Выбор колонок"/>
-                        <MenuItem Header="Подбор ширины"/>
-                        <MenuItem Header="Подбор ширины (все)"/>
-                        <Separator />
-                        <MenuItem Header="Конструктор фильтра"/>
-                        <MenuItem Header="Конструктор фильтра"/>
-                        <MenuItem Header="Показать панель поиска"/>
-                        <MenuItem Header="Показать строку авто-фильтра"/>
-                    </ContextMenu>
-                </ListView.ContextMenu>
             </ListView>
         </Border>
     </Grid>
