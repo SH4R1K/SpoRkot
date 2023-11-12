@@ -215,8 +215,8 @@
                     Style="{StaticResource buttonDefaulStyle}"
                     Width="150"
                     Click="UpdateButton_Click"/>
-                
-                <Button Grid.Column="1"                           
+
+                    <Button Grid.Column="1"                           
                     Content="Добавить отчет"                            
                     FontSize="12"
                     FontFamily="Montserrat"
@@ -227,18 +227,7 @@
                     Style="{StaticResource buttonDefaulStyle}"
                     Width="150"
                     Click="SelectFileButton_Click" />
-                
-                <Button Grid.Column="1"                           
-                    Content="Просмотреть отчет"                            
-                    FontSize="12"
-                    FontFamily="Montserrat"
-                    BorderThickness="0"
-                    Foreground="White"
-                    VerticalAlignment="Top"
-                    Style="{StaticResource buttonDefaulStyle}"
-                    Width="150"
-                    Command="{Binding ShowDataBaseViewWindowCommand}"/>
-            </WrapPanel>
+                </WrapPanel>
             </ScrollViewer>
         </Grid>
 
@@ -378,7 +367,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         
-                        <GridViewColumn Header="Период проведения контроля">
+                        <GridViewColumn Header="Просмотреть">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="Открыть"

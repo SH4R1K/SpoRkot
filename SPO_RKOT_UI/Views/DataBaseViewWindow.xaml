@@ -17,7 +17,13 @@
             <Setter Property="Padding" Value="10,0,0,10"/>
             <Setter Property="FontFamily" Value="Montserrat"/>
             <Setter Property="FontSize" Value="15"/>
+            <Setter Property="BorderThickness" Value="0,0,0,0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
         </Style>
+
+            <Style TargetType="DataGridCell">
+                <Setter Property="Effect" Value="{x:Null}" />
+            </Style>
     </Window.Resources>
 
     <Border CornerRadius="10"                    
@@ -207,36 +213,42 @@
                                     CanUserDeleteRows="False"
                                      CanUserResizeColumns="False"
                                     IsReadOnly="False" AutoGenerateColumns="False" HeadersVisibility="Column" SelectionUnit="Cell">
-                                    <DataGrid.ColumnHeaderStyle>
-                                        <Style TargetType="DataGridColumnHeader">
-                                            <Setter Property="Background" Value="Transparent"/>
-                                            <Setter Property="Foreground" Value="#BCBEE0"/>
-                                            <Setter Property="Padding" Value="10,0,0,10"/>
-                                            <Setter Property="FontFamily" Value="Montserrat"/>
-                                            <Setter Property="FontSize" Value="15"/>
-                                            <Setter Property="LayoutTransform">
-                                                <Setter.Value>
-                                                    <TransformGroup>
-                                                        <RotateTransform Angle="90"/>
-                                                    </TransformGroup>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </DataGrid.ColumnHeaderStyle>
-                                    <DataGrid.LayoutTransform>
-                                        <TransformGroup>
-                                            <RotateTransform Angle="-90"/>
-                                        </TransformGroup>
-                                    </DataGrid.LayoutTransform>
-                                    <DataGrid.CellStyle>
-                                        <Style>
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Foreground" Value="#BCBEE0"/>
+                                        <Setter Property="Padding" Value="10,0,0,10"/>
+                                        <Setter Property="FontFamily" Value="Montserrat"/>
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="LayoutTransform">
+                                            <Setter.Value>
+                                                <TransformGroup>
+                                                    <RotateTransform Angle="90"/>
+                                                </TransformGroup>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.LayoutTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="-90"/>
+                                    </TransformGroup>
+                                </DataGrid.LayoutTransform>
+                                <DataGrid.CellStyle>
+                                    
+                                    <Style TargetType="DataGridCell">
+                                            <Setter Property="Effect" Value="{x:Null}" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                            <Setter Property="Padding" Value="5" />
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="Foreground" Value="{StaticResource titleColor1}" />
                                             <Setter Property="TextBlock.LayoutTransform">
-                                                <Setter.Value>
-                                                    <TransformGroup>
-                                                        <RotateTransform Angle="90"/>
-                                                    </TransformGroup>
-                                                </Setter.Value>
-                                            </Setter>
+                                            <Setter.Value>
+                                                <TransformGroup>
+                                                    <RotateTransform Angle="90"/>
+                                                </TransformGroup>
+                                            </Setter.Value>
+                                        </Setter>
                                             <Setter Property="TextBox.LayoutTransform">
                                                 <Setter.Value>
                                                     <TransformGroup>
@@ -246,10 +258,13 @@
                                             </Setter>
                                             <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
                                             <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                           
                                         </Style>
-                                    </DataGrid.CellStyle>
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding Operator.Name}" ClipboardContentBinding="{x:Null}" Header="Оператор" HeaderStringFormat=""/>
+                                </DataGrid.CellStyle>
+                                
+                                
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Operator.Name}" ClipboardContentBinding="{x:Null}" Header="Оператор" HeaderStringFormat=""/>
                                         <DataGridTextColumn Header="" IsReadOnly="True"/>
                                         <DataGridTextColumn Header="Показатели качества услуг подвижной радиотелефонной связи в части голосового соединения" IsReadOnly="True"/>
                                         <DataGridTextColumn Binding="{Binding VoiceQuality.NonAccessibilityRatio}" ClipboardContentBinding="{x:Null}" Header="Доля неуспешных попыток установления голосового соединения  (Voice Service Non-Acessibility ) [%] | не более 5"/>
@@ -261,7 +276,7 @@
                                         <DataGridTextColumn Binding="{Binding SmsQuality.ShareUndelivered}" ClipboardContentBinding="{x:Null}" Header="Доля недоставленных SMS сообщений [%]"/>
                                         <DataGridTextColumn Binding="{Binding SmsQuality.AverageDeliveryTime}" ClipboardContentBinding="{x:Null}" Header="Среднее время доставки SMS сообщений [сек]"/>
                                         <DataGridTextColumn Header="" IsReadOnly="True"/>
-                                        <DataGridTextColumn Header="Показатели качества услуг связи по передаче данных, за исключением услуг связи по передаче данных для целей передачи голосовой информации" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Показатели качества услуг связи по передаче данных, за исключением голосовой информации" IsReadOnly="True"/>
                                         <DataGridTextColumn Binding="{Binding HttpQuality.SessionFailureRatio}" ClipboardContentBinding="{x:Null}" Header="Доля неуспешных сессий по протоколу HTTP (HTTP Session Failure Ratio) [%]"/>
                                         <DataGridTextColumn Binding="{Binding HttpQuality.ULMeanUserDataRate}" ClipboardContentBinding="{x:Null}" Header="Среднее значение скорости передачи данных от абонента (HTTP UL Mean User Data Rate) [kbit/sec]"/>
                                         <DataGridTextColumn Binding="{Binding HttpQuality.DLMeanUserDataRate}" ClipboardContentBinding="{x:Null}" Header="Среднее значение скорости передачи данных к абоненту (HTTP DL Mean User Data Rate) [kbit/sec]"/>
