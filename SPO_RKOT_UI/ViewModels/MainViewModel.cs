@@ -65,6 +65,7 @@ namespace SPO_RKOT_UI.ViewModels
         //--> Команды (ViewModels)
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowInformationViewCommand { get; }
+        public ICommand ShowSettingsViewCommand { get; }
 
         /// <summary>
         /// Конструктор для объекта ViewModel для MainView
@@ -73,6 +74,8 @@ namespace SPO_RKOT_UI.ViewModels
         {
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowInformationViewCommand = new ViewModelCommand(ExecuteShowInformationViewCommand);
+            ShowSettingsViewCommand = new ViewModelCommand(ExecuteShowSettingsViewCommand);
+            //Default view
 
             //View по умолчанию
             ExecuteShowHomeViewCommand(true);
@@ -96,6 +99,13 @@ namespace SPO_RKOT_UI.ViewModels
             CurrentChildView = new ViewModelBase();
             Caption = "Справка";
             Icon = IconChar.Question;
+        }
+
+        private void ExecuteShowSettingsViewCommand(object obj)
+        {
+            CurrentChildView = new SettingsViewModel();
+            Caption = "Настройки";
+            Icon = IconChar.Tools;
         }
     }
 }

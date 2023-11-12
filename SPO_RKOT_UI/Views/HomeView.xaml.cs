@@ -43,6 +43,7 @@ namespace SPO_RKOT_UI.Views
                         MessageBox.Show("Отчет успешно добавлен.");
                     else
                         MessageBox.Show("Отчет с такими данными уже есть");
+                    homeViewModel.Update();
                 }
             }
             catch (Exception)
@@ -222,12 +223,20 @@ namespace SPO_RKOT_UI.Views
             var answer = MessageBox.Show("Вы уверены, что хотите удалить отчёт?", "Удаление отчёта",MessageBoxButton.YesNo,MessageBoxImage.Warning);
             if (answer == MessageBoxResult.Yes)
             {
-                using (var context = new RkotContext())
+                try
                 {
-                    ReportInfo report = (sender as Button)?.DataContext as ReportInfo;
-                    context.ReportInfos.Remove(report);
-                    await context.SaveChangesAsync();
-                    await homeViewModel.UpdateAsync();
+                    using (var context = new RkotContext())
+                    {
+                        ReportInfo report = (sender as Button)?.DataContext as ReportInfo;
+                        context.ReportInfos.Remove(report);
+                        context.SaveChanges();
+                        homeViewModel.Update();
+                    }
+                }
+                catch(Exception)
+                {
+                    MessageBox.Show("Данные не были удалены, либо были удалены ранее");
+                    homeViewModel.Update();
                 }
             }
         }
