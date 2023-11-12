@@ -182,7 +182,6 @@ namespace SPO_RKOT_UI.Views
                           Resources["HeaderTemplateArrowDown"] as DataTemplate;
                     }
 
-                    // Remove arrow from previously sorted header
                     if (_lastHeaderClicked != null && _lastHeaderClicked != headerClicked)
                     {
                         _lastHeaderClicked.Column.HeaderTemplate = null;
