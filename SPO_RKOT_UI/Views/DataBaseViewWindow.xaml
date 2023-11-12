@@ -85,8 +85,9 @@
                     <!--Header / Caption-->
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="639*"/>
+                            <ColumnDefinition Width="623*"/>
+                            <ColumnDefinition Width="17*"/>
                         </Grid.ColumnDefinitions>
 
                         <!--Caption-->
@@ -172,7 +173,8 @@
                                     Width="100" Click="SaveButton_Click"/>
 
                                 <Button                          
-                                    Content="Отмена"                            
+                                    Content="Отмена"
+                                    Tag="Cancel"
                                     FontSize="12"
                                     FontFamily="Montserrat"
                                     Cursor="Hand"
@@ -194,7 +196,7 @@
                               Loaded="dgridScrollViewer_Loaded"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Auto">
-                            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="excelDataGrid"
+                                <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="excelDataGrid"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                       HorizontalScrollBarVisibility="Hidden"
@@ -205,36 +207,36 @@
                                     CanUserDeleteRows="False"
                                      CanUserResizeColumns="False"
                                     IsReadOnly="False" AutoGenerateColumns="False" HeadersVisibility="Column" SelectionUnit="Cell">
-                                <DataGrid.ColumnHeaderStyle>
-                                    <Style TargetType="DataGridColumnHeader">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="Foreground" Value="#BCBEE0"/>
-                                        <Setter Property="Padding" Value="10,0,0,10"/>
-                                        <Setter Property="FontFamily" Value="Montserrat"/>
-                                        <Setter Property="FontSize" Value="15"/>
-                                        <Setter Property="LayoutTransform">
-                                            <Setter.Value>
-                                                <TransformGroup>
-                                                    <RotateTransform Angle="90"/>
-                                                </TransformGroup>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </DataGrid.ColumnHeaderStyle>
-                                <DataGrid.LayoutTransform>
-                                    <TransformGroup>
-                                        <RotateTransform Angle="-90"/>
-                                    </TransformGroup>
-                                </DataGrid.LayoutTransform>
-                                <DataGrid.CellStyle>
-                                    <Style>
-                                        <Setter Property="TextBlock.LayoutTransform">
-                                            <Setter.Value>
-                                                <TransformGroup>
-                                                    <RotateTransform Angle="90"/>
-                                                </TransformGroup>
-                                            </Setter.Value>
-                                        </Setter>
+                                    <DataGrid.ColumnHeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Foreground" Value="#BCBEE0"/>
+                                            <Setter Property="Padding" Value="10,0,0,10"/>
+                                            <Setter Property="FontFamily" Value="Montserrat"/>
+                                            <Setter Property="FontSize" Value="15"/>
+                                            <Setter Property="LayoutTransform">
+                                                <Setter.Value>
+                                                    <TransformGroup>
+                                                        <RotateTransform Angle="90"/>
+                                                    </TransformGroup>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DataGrid.ColumnHeaderStyle>
+                                    <DataGrid.LayoutTransform>
+                                        <TransformGroup>
+                                            <RotateTransform Angle="-90"/>
+                                        </TransformGroup>
+                                    </DataGrid.LayoutTransform>
+                                    <DataGrid.CellStyle>
+                                        <Style>
+                                            <Setter Property="TextBlock.LayoutTransform">
+                                                <Setter.Value>
+                                                    <TransformGroup>
+                                                        <RotateTransform Angle="90"/>
+                                                    </TransformGroup>
+                                                </Setter.Value>
+                                            </Setter>
                                             <Setter Property="TextBox.LayoutTransform">
                                                 <Setter.Value>
                                                     <TransformGroup>
@@ -245,9 +247,9 @@
                                             <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
                                             <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
                                         </Style>
-                                </DataGrid.CellStyle>
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Operator.Name}" ClipboardContentBinding="{x:Null}" Header="Оператор" HeaderStringFormat=""/>
+                                    </DataGrid.CellStyle>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Operator.Name}" ClipboardContentBinding="{x:Null}" Header="Оператор" HeaderStringFormat=""/>
                                         <DataGridTextColumn Header="" IsReadOnly="True"/>
                                         <DataGridTextColumn Header="Показатели качества услуг подвижной радиотелефонной связи в части голосового соединения" IsReadOnly="True"/>
                                         <DataGridTextColumn Binding="{Binding VoiceQuality.NonAccessibilityRatio}" ClipboardContentBinding="{x:Null}" Header="Доля неуспешных попыток установления голосового соединения  (Voice Service Non-Acessibility ) [%] | не более 5"/>
@@ -273,26 +275,26 @@
                                         <DataGridTextColumn Binding="{Binding Stat.CountLoadFile}" ClipboardContentBinding="{x:Null}" Header="Общее количество попыток соединений с сервером передачи данных HTTP (Загрузка файлов)"/>
                                         <DataGridTextColumn Binding="{Binding Stat.CountWebBrowsing}" ClipboardContentBinding="{x:Null}" Header="Общее количество тестовых сессий по протоколу HTTP (Web-browsing)"/>
                                     </DataGrid.Columns>
-                                <DataGrid.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Сортировка по возрастанию"/>
-                                        <MenuItem Header="Сортировка по убыванию"/>
-                                        <Separator />
-                                        <MenuItem Header="Группировать по это колонке"/>
-                                        <MenuItem Header="Скрыть облать группировки"/>
-                                        <Separator />
-                                        <MenuItem Header="Скрыть колонку"/>
-                                        <MenuItem Header="Выбор колонок"/>
-                                        <MenuItem Header="Подбор ширины"/>
-                                        <MenuItem Header="Подбор ширины (все)"/>
-                                        <Separator />
-                                        <MenuItem Header="Конструктор фильтра"/>
-                                        <MenuItem Header="Конструктор фильтра"/>
-                                        <MenuItem Header="Показать панель поиска"/>
-                                        <MenuItem Header="Показать строку авто-фильтра"/>
-                                    </ContextMenu>
-                                </DataGrid.ContextMenu>
-                            </DataGrid>
+                                    <DataGrid.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Сортировка по возрастанию"/>
+                                            <MenuItem Header="Сортировка по убыванию"/>
+                                            <Separator />
+                                            <MenuItem Header="Группировать по это колонке"/>
+                                            <MenuItem Header="Скрыть облать группировки"/>
+                                            <Separator />
+                                            <MenuItem Header="Скрыть колонку"/>
+                                            <MenuItem Header="Выбор колонок"/>
+                                            <MenuItem Header="Подбор ширины"/>
+                                            <MenuItem Header="Подбор ширины (все)"/>
+                                            <Separator />
+                                            <MenuItem Header="Конструктор фильтра"/>
+                                            <MenuItem Header="Конструктор фильтра"/>
+                                            <MenuItem Header="Показать панель поиска"/>
+                                            <MenuItem Header="Показать строку авто-фильтра"/>
+                                        </ContextMenu>
+                                    </DataGrid.ContextMenu>
+                                </DataGrid>
                             </ScrollViewer>
                         </Border>
                     </Grid>
