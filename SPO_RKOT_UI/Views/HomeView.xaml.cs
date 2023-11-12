@@ -43,6 +43,7 @@ namespace SPO_RKOT_UI.Views
                         MessageBox.Show("Отчет успешно добавлен.");
                     else
                         MessageBox.Show("Отчет с такими данными уже есть");
+                    homeViewModel.Update();
                 }
             }
             catch (Exception)
@@ -228,6 +229,7 @@ namespace SPO_RKOT_UI.Views
                 catch(Exception)
                 {
                     MessageBox.Show("Данные не были удалены, либо были удалены ранее");
+                    homeViewModel.Update();
                 }
             }
         }
