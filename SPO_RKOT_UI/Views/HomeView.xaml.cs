@@ -44,7 +44,7 @@ namespace SPO_RKOT_UI.Views
             }
             catch (Exception)
             {
-                MessageBox.Show("Во время загрузки excel-файла возникли ошибки. Попробуйте загрузить его заново.");
+                MessageBox.Show("Во время загрузки excel-файла возникли ошибки. Попробуйте загрузить его заново.","Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
