@@ -31,16 +31,19 @@
 Чтобы просмотреть или изменить отчет, выберите его в списке отчетов и нажмите <Run FontWeight="Bold">"Просмотреть отчёт"</Run>.
 Или нажмите два раза по строке с нужным отчетом.
                     <LineBreak />
+                    
                     <Button x:Name="MoreInfoButton"                        
                     Content="Подробнее"                            
                     FontSize="12"
                     FontFamily="Montserrat"
                     Cursor="Hand"
                     BorderThickness="0"
-                    Foreground="White"
+                    Foreground="{StaticResource panelColor}"
+                    Background="{StaticResource plainTextColor1}"
                     Width="90"
+                    Margin="0 5 0 15"
                     Click="MoreInfoButton_Click" />
-                    <LineBreak />
+                    
                     <LineBreak />
 <Run FontWeight="Bold">Горячие клавиши:</Run> 
                     <LineBreak />
