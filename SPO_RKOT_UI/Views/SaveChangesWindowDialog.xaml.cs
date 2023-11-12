@@ -20,9 +20,10 @@ namespace SPO_RKOT_UI.Views
 
         public enum CustomDialogResult
         {
-            Cancel,
+            Close,
             Yes,
-            No
+            No,
+            Cancel
         }
 
         //Кнопка Да
@@ -49,6 +50,7 @@ namespace SPO_RKOT_UI.Views
         //Кнопка Закрыть(крестик). Срабатывает как кнопка Отмена
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (DialogResult == CustomDialogResult.Close)
             DialogResult = CustomDialogResult.Cancel;
         }
 
