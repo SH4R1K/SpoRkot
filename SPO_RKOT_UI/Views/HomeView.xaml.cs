@@ -23,24 +23,30 @@ namespace SPO_RKOT_UI.Views
             InitializeComponent();
 
             DataContext = homeViewModel;
-
-
         }
 
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
-            string fileName;
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;|All Files|*.*";
-            if (openFileDialog.ShowDialog() == true)
+            try
             {
-                fileName = openFileDialog.FileName;
-                if (ExcelReader.ImportFromExcel(fileName))
-                    MessageBox.Show("Отчет успешно добавлен.");
-                else
-                    MessageBox.Show("Отчет с такими данными уже есть");
+                string fileName;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;|All Files|*.*";
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    fileName = openFileDialog.FileName;
+                    if (ExcelReader.ImportFromExcel(fileName))
+                        MessageBox.Show("Отчет успешно добавлен.");
+                    else
+                        MessageBox.Show("Отчет с такими данными уже есть");
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Во время загрузки excel-файла возникли ошибки. Попробуйте загрузить его заново.");
+            }
+
         }
 
         private void UserList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -181,13 +187,24 @@ namespace SPO_RKOT_UI.Views
 
         private void Sort(string sortBy, ListSortDirection direction)
         {
-            ICollectionView dataView =
-              CollectionViewSource.GetDefaultView(reportsListView.ItemsSource);
+            try
+            {
+                ICollectionView dataView =
+                CollectionViewSource.GetDefaultView(reportsListView.ItemsSource);
 
-            dataView.SortDescriptions.Clear();
-            SortDescription sd = new SortDescription(sortBy, direction);
-            dataView.SortDescriptions.Add(sd);
-            dataView.Refresh();
+                dataView.SortDescriptions.Clear();
+                SortDescription sd = new SortDescription(sortBy, direction);
+                dataView.SortDescriptions.Add(sd);
+                dataView.Refresh();
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show($"Данные отсутствуют", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Неизвестная Ошибка: \n{ex}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

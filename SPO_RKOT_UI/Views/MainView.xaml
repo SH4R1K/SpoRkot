@@ -135,7 +135,7 @@
                         <!--Control bar-->
                         <RowDefinition Height="25"/>
                         <!--Header / Caption-->
-                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="25"/>
                         <!--Content section / Child views-->
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -198,7 +198,7 @@
                     </Grid>
 
                     <!--Content section / Child views-->
-                    <ContentControl Content="{Binding CurrentChildView}" Grid.Row="2" Margin="25"/>
+                    <ContentControl Content="{Binding CurrentChildView}" Grid.Row="2" Margin="25 5 25 25"/>
                 </Grid>
             </Border>
         </Grid>
