@@ -128,7 +128,8 @@ namespace ExcelLibrary
         private static string GetAbbreveature(string inputString)
         {
             string abbreveature = "";
-            foreach (string item in inputString.Split(' '))
+            var list = inputString.Replace('-', ' ').Split(' ');
+            foreach (string item in list)
             {
                 abbreveature += item.Trim().Substring(0, 1);
             }
