@@ -22,34 +22,39 @@
                 Padding="10">
             <StackPanel>
                 
+                
                 <TextBlock Text="Настройка подключения к Базе Данных"
                            Style="{StaticResource InformationTextBlock}"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Login"
                                Style="{StaticResource InformationTextBlock}"
                                Padding="5"/>
-                    <TextBox Style="{StaticResource defaultTextBox}"/>
+                    <TextBox Style="{StaticResource defaultTextBox}"
+                             Width="300"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="login"
                                Style="{StaticResource InformationTextBlock}"
                                Padding="5"/>
-                    <TextBox Style="{StaticResource defaultTextBox}"/>
+                    <TextBox Style="{StaticResource defaultTextBox}"
+                             Width="300"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="login"
                                Style="{StaticResource InformationTextBlock}"
                                Padding="5"/>
-                    <TextBox Style="{StaticResource defaultTextBox}"/>
+                    <TextBox Style="{StaticResource defaultTextBox}"
+                             Width="300"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="login"
                                Style="{StaticResource InformationTextBlock}"
                                Padding="5"/>
-                    <TextBox Style="{StaticResource defaultTextBox}"/>
+                    <TextBox Style="{StaticResource defaultTextBox}"
+                             Width="300"/>
                 </StackPanel>
                 
                 <Button Content="Применить"
