@@ -178,6 +178,7 @@ namespace SPO_RKOT_UI.Views
 
             }
         }
+
         private void Sort(string sortBy, ListSortDirection direction)
         {
             ICollectionView dataView =
