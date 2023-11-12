@@ -191,7 +191,7 @@ namespace SPO_RKOT_UI.Views
                 dataView.SortDescriptions.Add(sd);
                 dataView.Refresh();
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
                 MessageBox.Show($"Данные отсутствуют", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
