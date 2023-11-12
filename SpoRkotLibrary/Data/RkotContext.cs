@@ -75,7 +75,7 @@ public partial class RkotContext : DbContext
 
             entity.HasOne(d => d.ReportInfo).WithMany(p => p.Reports)
                 .HasForeignKey(d => d.ReportInfoId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.ClientCascade)
                 .HasConstraintName("FK_Report_ReportInfo");
         });
 
