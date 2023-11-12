@@ -106,7 +106,7 @@
                                           Foreground="{StaticResource titleColor2}"
                                           Margin="35,0,10,0"/>
 
-                            <TextBlock Text="Просмотр Данных"
+                            <TextBlock Text="Просмотр данных"
                                        Foreground="{StaticResource titleColor2}"
                                        FontSize="16"
                                        FontFamily="Montserrat"
