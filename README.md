@@ -15,8 +15,8 @@
 - .NET 6
 - WPF
 - C#
-- MS SQL
-- EFCore
+- MS SQL Server 2022
+- EFCore 7.0
 - GitHub
 
 ## Требования
@@ -27,7 +27,7 @@
 ## Авторы
 
 - Попов Глеб [GitHub: SH4R1K](https://github.com/SH4R1K)
-- Пономорёв Иван [GitHub: Pluhenciya](https://github.com/Pluhenciya)
+- Пономарёв Иван [GitHub: Pluhenciya](https://github.com/Pluhenciya)
 - Хватов Яков [GitHub: Meresk1](https://github.com/meresk1)
 - Дмитрий Ушаков [GitHub: Morokenec](https://github.com/Morokenec)
 - Антипин Егор [GitHub: 4qiz](https://github.com/4qiz)
