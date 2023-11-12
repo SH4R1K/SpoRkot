@@ -87,32 +87,14 @@ namespace SPO_RKOT_UI.Views
             reportsListView.Items.Filter = FiltersMethod; //поиск по listview
         }
 
-        private bool FilterLocationMethod(object obj)
-        {
-            var report = (ReportInfo)obj;
-            return report.Location.Contains(findLocationTextBox.Text, StringComparison.OrdinalIgnoreCase);
-        }
-
         private void FindDistrictTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             reportsListView.Items.Filter = FiltersMethod; //поиск по listview
         }
 
-        private bool FilterDistrictMethod(object obj)
-        {
-            var report = (ReportInfo)obj;
-            return report.FederalDistrict.Contains(findDistrictTextBox.Text, StringComparison.OrdinalIgnoreCase);
-        }
-
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             reportsListView.Items.Filter = FiltersMethod; //поиск по listview
-        }
-
-        private bool FilterDateMethod(object obj)
-        {
-            var report = (ReportInfo)obj;
-            return report.StartDate >= startDatePicker.DisplayDate && report.EndDate <= endDatePicker.DisplayDate;
         }
 
         private bool FiltersMethod(object obj)
