@@ -21,6 +21,7 @@ namespace ExcelLibrary
         /// <returns>Возвращает false если отчёт который пытаемся добавить уже существует
         /// возвращает true если такого отчёта еще не было добавлено</returns>
         public static bool ImportFromExcel(string fileName)
+        public async static Task<bool> ImportFromExcel(string fileName)
         {
             using (var context = new RkotContext())
             {
@@ -37,7 +38,7 @@ namespace ExcelLibrary
 
                 reportInfos.Add(reportInfo);
 
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return true;
             }
         }
@@ -147,7 +148,8 @@ namespace ExcelLibrary
         private static string GetAbbreveature(string inputString)
         {
             string abbreveature = "";
-            foreach (string item in inputString.Split(' '))
+            var list = inputString.Replace('-', ' ').Split(' ');
+            foreach (string item in list)
             {
                 abbreveature += item.Trim().Substring(0, 1);
             }
