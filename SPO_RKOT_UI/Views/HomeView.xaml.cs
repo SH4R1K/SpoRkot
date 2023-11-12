@@ -46,7 +46,7 @@ namespace SPO_RKOT_UI.Views
 
         private void WatchButtonInRow_Click(object sender, RoutedEventArgs e)
         {
-            ReportInfo report = (sender as System.Windows.Controls.Button)?.DataContext as ReportInfo;
+            ReportInfo report = (sender as Button)?.DataContext as ReportInfo;
 
             //ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
             var dataBase = new DataBaseViewWindow(report);
