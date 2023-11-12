@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="login" Type="System.String" Scope="User">
-      <Value Profile="(Default)">oleg</Value>
+      <Value Profile="(Default)">HahatunUser</Value>
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
       <Value Profile="(Default)">12345</Value>
     </Setting>
     <Setting Name="database" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SPO_RKOT</Value>
+      <Value Profile="(Default)">SPO_RKOT_HaHaTun</Value>
     </Setting>
     <Setting Name="server" Type="System.String" Scope="User">
       <Value Profile="(Default)">.\SQLEXPRESS</Value>
