@@ -31,8 +31,9 @@ public partial class RkotContext : DbContext
     public virtual DbSet<VoiceQuality> VoiceQualities { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("data source=SPO_RKOT.mssql.somee.com; user id=Dimaso88_SQLLogin_1;pwd=h6ankljaeg;Trust Server Certificate=True;initial catalog=SPO_RKOT");
+    {
+        optionsBuilder.UseSqlServer(ConnectionManager.ConnectionString);
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

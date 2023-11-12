@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpoRkotLibrary.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -24,6 +25,10 @@ namespace SPO_RKOT_UI.Views
         public MainView()
         {
             InitializeComponent();
+            ConnectionManager.Login = Properties.Settings.Default.login;
+            ConnectionManager.DataBase = Properties.Settings.Default.database;
+            ConnectionManager.Password = Properties.Settings.Default.password;
+            ConnectionManager.Server = Properties.Settings.Default.server;
         }
 
         [DllImport("user32.dll")]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpoRkotLibrary.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,11 @@ namespace SPO_RKOT_UI.Views
 
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Properties.Settings.Default.Save();
+            ConnectionManager.Login = Properties.Settings.Default.login;
+            ConnectionManager.DataBase = Properties.Settings.Default.database;
+            ConnectionManager.Password = Properties.Settings.Default.password;
+            ConnectionManager.Server = Properties.Settings.Default.server;
         }
     }
 }
