@@ -17,7 +17,13 @@
             <Setter Property="Padding" Value="10,0,0,10"/>
             <Setter Property="FontFamily" Value="Montserrat"/>
             <Setter Property="FontSize" Value="15"/>
+            <Setter Property="BorderThickness" Value="0,0,0,0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
         </Style>
+
+            <Style TargetType="DataGridCell">
+                <Setter Property="Effect" Value="{x:Null}" />
+            </Style>
     </Window.Resources>
 
     <Border CornerRadius="10"                    
@@ -85,8 +91,9 @@
                     <!--Header / Caption-->
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="639*"/>
+                            <ColumnDefinition Width="623*"/>
+                            <ColumnDefinition Width="17*"/>
                         </Grid.ColumnDefinitions>
 
                         <!--Caption-->
@@ -99,7 +106,7 @@
                                           Foreground="{StaticResource titleColor2}"
                                           Margin="35,0,10,0"/>
 
-                            <TextBlock Text="Просмотр Данных"
+                            <TextBlock Text="Просмотр данных"
                                        Foreground="{StaticResource titleColor2}"
                                        FontSize="16"
                                        FontFamily="Montserrat"
@@ -148,9 +155,9 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="С" Style="{StaticResource labelDefault}"/>
-                                    <DatePicker SelectedDate="{Binding StartDate}"  BorderThickness="0" Margin="3"/>
+                                    <DatePicker SelectedDate="{Binding StartDate}"  Style="{StaticResource defaultDatePicker}"/>
                                     <TextBlock Text="По" Style="{StaticResource labelDefault}"/>
-                                    <DatePicker SelectedDate="{Binding EndDate}" BorderThickness="0" Margin="3"/>
+                                    <DatePicker SelectedDate="{Binding EndDate}" Style="{StaticResource defaultDatePicker}"/>
                                 </StackPanel>
 
                             </StackPanel>
@@ -172,7 +179,8 @@
                                     Width="100" Click="SaveButton_Click"/>
 
                                 <Button                          
-                                    Content="Отмена"                            
+                                    Content="Отмена"
+                                    Tag="Cancel"
                                     FontSize="12"
                                     FontFamily="Montserrat"
                                     Cursor="Hand"
@@ -191,10 +199,10 @@
                                 CornerRadius="10" 
                                 Padding="10">
                             <ScrollViewer x:Name="dgridScrollViewer"
-                              Loaded="dgridScrollViewer_Loaded"
+                              Loaded="DgridScrollViewer_Loaded"
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Auto">
-                            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="excelDataGrid"
+                                <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="excelDataGrid"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                       HorizontalScrollBarVisibility="Hidden"
@@ -227,8 +235,14 @@
                                     </TransformGroup>
                                 </DataGrid.LayoutTransform>
                                 <DataGrid.CellStyle>
-                                    <Style>
-                                        <Setter Property="TextBlock.LayoutTransform">
+                                    
+                                    <Style TargetType="DataGridCell">
+                                            <Setter Property="Effect" Value="{x:Null}" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                            <Setter Property="Padding" Value="5" />
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="Foreground" Value="{StaticResource titleColor1}" />
+                                            <Setter Property="TextBlock.LayoutTransform">
                                             <Setter.Value>
                                                 <TransformGroup>
                                                     <RotateTransform Angle="90"/>
@@ -244,8 +258,11 @@
                                             </Setter>
                                             <Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
                                             <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                                           
                                         </Style>
                                 </DataGrid.CellStyle>
+                                
+                                
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Operator.Name}" ClipboardContentBinding="{x:Null}" Header="Оператор" HeaderStringFormat=""/>
                                         <DataGridTextColumn Header="" IsReadOnly="True"/>
@@ -259,7 +276,7 @@
                                         <DataGridTextColumn Binding="{Binding SmsQuality.ShareUndelivered}" ClipboardContentBinding="{x:Null}" Header="Доля недоставленных SMS сообщений [%]"/>
                                         <DataGridTextColumn Binding="{Binding SmsQuality.AverageDeliveryTime}" ClipboardContentBinding="{x:Null}" Header="Среднее время доставки SMS сообщений [сек]"/>
                                         <DataGridTextColumn Header="" IsReadOnly="True"/>
-                                        <DataGridTextColumn Header="Показатели качества услуг связи по передаче данных, за исключением услуг связи по передаче данных для целей передачи голосовой информации" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Показатели качества услуг связи по передаче данных, за исключением голосовой информации" IsReadOnly="True"/>
                                         <DataGridTextColumn Binding="{Binding HttpQuality.SessionFailureRatio}" ClipboardContentBinding="{x:Null}" Header="Доля неуспешных сессий по протоколу HTTP (HTTP Session Failure Ratio) [%]"/>
                                         <DataGridTextColumn Binding="{Binding HttpQuality.ULMeanUserDataRate}" ClipboardContentBinding="{x:Null}" Header="Среднее значение скорости передачи данных от абонента (HTTP UL Mean User Data Rate) [kbit/sec]"/>
                                         <DataGridTextColumn Binding="{Binding HttpQuality.DLMeanUserDataRate}" ClipboardContentBinding="{x:Null}" Header="Среднее значение скорости передачи данных к абоненту (HTTP DL Mean User Data Rate) [kbit/sec]"/>
@@ -273,26 +290,26 @@
                                         <DataGridTextColumn Binding="{Binding Stat.CountLoadFile}" ClipboardContentBinding="{x:Null}" Header="Общее количество попыток соединений с сервером передачи данных HTTP (Загрузка файлов)"/>
                                         <DataGridTextColumn Binding="{Binding Stat.CountWebBrowsing}" ClipboardContentBinding="{x:Null}" Header="Общее количество тестовых сессий по протоколу HTTP (Web-browsing)"/>
                                     </DataGrid.Columns>
-                                <DataGrid.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Сортировка по возрастанию"/>
-                                        <MenuItem Header="Сортировка по убыванию"/>
-                                        <Separator />
-                                        <MenuItem Header="Группировать по это колонке"/>
-                                        <MenuItem Header="Скрыть облать группировки"/>
-                                        <Separator />
-                                        <MenuItem Header="Скрыть колонку"/>
-                                        <MenuItem Header="Выбор колонок"/>
-                                        <MenuItem Header="Подбор ширины"/>
-                                        <MenuItem Header="Подбор ширины (все)"/>
-                                        <Separator />
-                                        <MenuItem Header="Конструктор фильтра"/>
-                                        <MenuItem Header="Конструктор фильтра"/>
-                                        <MenuItem Header="Показать панель поиска"/>
-                                        <MenuItem Header="Показать строку авто-фильтра"/>
-                                    </ContextMenu>
-                                </DataGrid.ContextMenu>
-                            </DataGrid>
+                                    <DataGrid.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Сортировка по возрастанию"/>
+                                            <MenuItem Header="Сортировка по убыванию"/>
+                                            <Separator />
+                                            <MenuItem Header="Группировать по это колонке"/>
+                                            <MenuItem Header="Скрыть облать группировки"/>
+                                            <Separator />
+                                            <MenuItem Header="Скрыть колонку"/>
+                                            <MenuItem Header="Выбор колонок"/>
+                                            <MenuItem Header="Подбор ширины"/>
+                                            <MenuItem Header="Подбор ширины (все)"/>
+                                            <Separator />
+                                            <MenuItem Header="Конструктор фильтра"/>
+                                            <MenuItem Header="Конструктор фильтра"/>
+                                            <MenuItem Header="Показать панель поиска"/>
+                                            <MenuItem Header="Показать строку авто-фильтра"/>
+                                        </ContextMenu>
+                                    </DataGrid.ContextMenu>
+                                </DataGrid>
                             </ScrollViewer>
                         </Border>
                     </Grid>

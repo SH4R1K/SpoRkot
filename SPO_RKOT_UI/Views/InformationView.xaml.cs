@@ -29,7 +29,7 @@ namespace SPO_RKOT_UI.Views
         private void MoreInfoButton_Click(object sender, RoutedEventArgs e)
         {
             var infoView = new MoreInfoView();
-            infoView.ShowDialog();
+            infoView.Show();
         }
     }
 }

@@ -2,19 +2,11 @@
 using SpoRkotLibrary.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SPO_RKOT_UI.Views
 {
@@ -23,9 +15,13 @@ namespace SPO_RKOT_UI.Views
     /// </summary>
     public partial class DataBaseViewWindow : Window
     {
+        bool isCancel;
+
         public DataBaseViewWindow(ReportInfo reportInfo)
         {
             InitializeComponent();
+
+            isCancel = false;
             ReportInfo = reportInfo;
             DataContext = ReportInfo;
             excelDataGrid.ItemsSource = ReportInfo.Reports;
@@ -41,7 +37,6 @@ namespace SPO_RKOT_UI.Views
                 excelDataGrid.Columns.Add(dataGridColumn);
             }
         }
-
         public ReportInfo ReportInfo { get; set; }
 
         [DllImport("user32.dll")]
@@ -59,7 +54,10 @@ namespace SPO_RKOT_UI.Views
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            var button = sender as Button;
+            if (button.Tag.ToString() == "Cancel")
+                isCancel = true;
+            Close();
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -80,13 +78,21 @@ namespace SPO_RKOT_UI.Views
 
         private void ReportInfoSaveChanged()
         {
-            using (var context = new RkotContext())
+            try
             {
-                context.Update(ReportInfo);
-                context.SaveChanges();
+                using (var context = new RkotContext())
+                {
+                    context.Update(ReportInfo);
+                    context.SaveChanges();
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Проблема с сохранением. Данные не сохранены.");
+            }
+
         }
-        private void dgridScrollViewer_Loaded(object sender, RoutedEventArgs e)
+        private void DgridScrollViewer_Loaded(object sender, RoutedEventArgs e)
         {
             // Add MouseWheel support for the datagrid scrollviewer.
             excelDataGrid.AddHandler(MouseWheelEvent, new RoutedEventHandler(DataGridMouseWheelHorizontal), true);
@@ -101,21 +107,21 @@ namespace SPO_RKOT_UI.Views
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            SaveChangesWindowDialog saveChangesWindowDialog = new SaveChangesWindowDialog();
-            saveChangesWindowDialog.ShowDialog();
-            if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Yes)
+            if (!isCancel)
             {
-                ReportInfoSaveChanged();
-                MessageBox.Show("Данные сохранены");
-            }
-            else if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.No)
-            {
-                MessageBox.Show("Данные не сохранены");
-            }
-            else
-            {
-                e.Cancel = true;
+                SaveChangesWindowDialog saveChangesWindowDialog = new SaveChangesWindowDialog();
+                saveChangesWindowDialog.ShowDialog();
+                if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Yes)
+                {
+                    ReportInfoSaveChanged();
+                    MessageBox.Show("Данные сохранены");
+                }
+                else if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }
 }
+

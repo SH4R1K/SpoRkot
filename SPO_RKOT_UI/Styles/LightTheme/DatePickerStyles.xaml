@@ -2,59 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <!--DatePicker default-->
-    <!--<Style x:Key="defaultDatePicker" TargetType="{x:Type DatePicker}">
-        <Setter Property="Margin" Value="0 10 0 0"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type DatePicker}">
-                    <Grid>
-                        <Border x:Name="Border"
-                                Grid.ColumnSpan="2"
-                                Height="35"
-                                Width="250"
-                                BorderThickness="2"
-                                BorderBrush="{StaticResource plainTextColor3}"
-                                CornerRadius="5"
-                                Background="Transparent">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="35"/>
-                                </Grid.ColumnDefinitions>
-                                <DatePickerTextBox x:Name="PART_TextBox" Style="{StaticResource labelDefault}" 
-                                                   BorderThickness="0"
-                                                   Grid.Column="0"
-                                                   FontFamily="Montserrat"
-                                                   FontSize="11"
-                                                   Foreground="{StaticResource titleColor1}"
-                                                   VerticalAlignment="Center"
-                                                   Padding="13 4 0 0"/>
-                                <Button x:Name="PART_Button"
-                                        Style="{StaticResource buttonDefaulStyle}"
-                                        Grid.Column="1"/>
-                                <Popup x:Name="PART_Popup"
-                                       AllowsTransparency="True"
-                                       HorizontalAlignment="Left"
-                                       Placement="Bottom"
-                                       PlacementTarget="{Binding ElementName=PART_TextBox}"
-                                       StaysOpen="False"
-                                       HorizontalOffset="17"/>
-                                <Label x:Name="Watermark"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Foreground="{StaticResource titleColor1}"
-                                       Visibility="Collapsed"
-                                       Padding="11 7 20 0"
-                                       Content="{TemplateBinding Tag}"
-                                       FontFamily="Montserrat"
-                                       FontSize="11"/>
-
-                            </Grid>
-                        </Border>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
+    <Style x:Key="defaultDatePicker" TargetType="{x:Type DatePicker}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="3"/>        
+    </Style>
 </ResourceDictionary>

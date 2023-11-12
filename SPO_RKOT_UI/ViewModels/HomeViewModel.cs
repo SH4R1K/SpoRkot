@@ -1,15 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpoRkotLibrary.Data;
 using SpoRkotLibrary.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
 
 namespace SPO_RKOT_UI.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
         private ObservableCollection<ReportInfo> reportsFromDB;
+        private string textMessage;
 
         public ObservableCollection<ReportInfo> ReportsFromDB
         {
@@ -20,37 +21,64 @@ namespace SPO_RKOT_UI.ViewModels
                 OnPropertyChanged(nameof(ReportsFromDB));
             }
         }
-        public ICommand ShowDataBaseViewWindowCommand { get; }
+
+        public string TextMessage
+        {
+            get => textMessage;
+            set
+            {
+                textMessage = value;
+                OnPropertyChanged(nameof(TextMessage));
+            }
+        }
 
         public HomeViewModel()
         {
-            LoadData();
-            ShowDataBaseViewWindowCommand = new ViewModelCommand(ShowDataBaseViewWindow);
+            try
+            {
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                reportsFromDB = null;
+                TextMessage = ex.Message;
+            }
         }
 
         public void Update()
         {
-            LoadData();
+            try
+            {
+                LoadData();
+            }
+             catch (Exception ex)
+            {
+                reportsFromDB = null;
+                TextMessage = ex.Message;
+            }
         }
 
         private void LoadData()
         {
+
             using (var context = new RkotContext())
             {
-                var reportInfos = context.ReportInfos.AsNoTracking()
+                try
+                {
+                    var reportInfos = context.ReportInfos.AsNoTracking()
                     .Include(ri => ri.Reports).ThenInclude(r => r.Stat)
                     .Include(ri => ri.Reports).ThenInclude(r => r.SmsQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.VoiceQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.HttpQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.Operator);
-                ReportsFromDB = new ObservableCollection<ReportInfo>(reportInfos.ToList());
+                    ReportsFromDB = new ObservableCollection<ReportInfo>(reportInfos.ToList());
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Проблема с загрузкой данных. Проверьте подключение к интернету или обратитесь к системному администратору.");
+                }
             }
-        }
 
-        private void ShowDataBaseViewWindow(object obj)
-        {
-            // var dataBase = new DataBaseViewWindow();
-            // dataBase.ShowDialog();
         }
     }
 }
