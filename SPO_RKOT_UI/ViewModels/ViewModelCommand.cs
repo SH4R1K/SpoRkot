@@ -7,13 +7,16 @@ using System.Windows.Input;
 
 namespace SPO_RKOT_UI.ViewModels
 {
+    /// <summary>
+    /// Класс для реализации интерфейса ICommand
+    /// </summary>
     public class ViewModelCommand : ICommand
     {
-        //Fields
+        //Поля
         private readonly Action<object> _executeAction;
         private readonly Predicate<object> _canExecuteAction;
 
-        //Constructors
+        //Конструкторы
         public ViewModelCommand(Action<object> executeAction)
         {
             _executeAction = executeAction;
@@ -26,14 +29,14 @@ namespace SPO_RKOT_UI.ViewModels
             _canExecuteAction = canExecuteAction;
         }
 
-        //Events
+        //Событие
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        //Methods
+        //Методы
         public bool CanExecute(object parameter)
         {
             return _canExecuteAction == null ? true : _canExecuteAction(parameter);

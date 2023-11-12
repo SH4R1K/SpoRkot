@@ -26,6 +26,7 @@ namespace SPO_RKOT_UI.Views
             InitializeComponent();
         }
 
+        //Кнопка Применить
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.Save();

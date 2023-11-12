@@ -1,5 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using System;
+﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -20,36 +20,39 @@ namespace SPO_RKOT_UI.Views
 
         public enum CustomDialogResult
         {
-            Close,
+            Cancel,
             Yes,
-            No,
-            Cancel
+            No
         }
 
+        //Кнопка Да
         private void YesButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = CustomDialogResult.Yes;
             Close();
         }
 
+        //Кнопка Нет
         private void NoButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = CustomDialogResult.No;
             Close();
         }
 
+        //Кнопка Отмена
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = CustomDialogResult.Cancel;
             Close();
         }
 
+        //Кнопка Закрыть(крестик). Срабатывает как кнопка Отмена
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(DialogResult == CustomDialogResult.Close)
-                DialogResult = CustomDialogResult.Cancel;
+            DialogResult = CustomDialogResult.Cancel;
         }
 
+        //Window Controls
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         private void PanelControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

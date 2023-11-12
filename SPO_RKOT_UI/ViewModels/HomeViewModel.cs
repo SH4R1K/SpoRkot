@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 namespace SPO_RKOT_UI.ViewModels
 {
     /// <summary>
-    /// ViewModel для HomeView
+    /// ViewModel для HomeView.
     /// </summary>
     public class HomeViewModel : ViewModelBase
     {
 
         private ObservableCollection<ReportInfo> reportsFromDB;
         
-        // Текущие отчеты
+        /// <summary>
+        /// Текущие данные отчеты.
+        /// </summary>
         public ObservableCollection<ReportInfo> ReportsFromDB
         {
             get => reportsFromDB;
@@ -29,7 +31,9 @@ namespace SPO_RKOT_UI.ViewModels
 
         private string textMessage;
 
-        // Текст сообщения об ошибке
+        /// <summary>
+        /// Текст сообщения об ошибки.
+        /// </summary>
         public string TextMessage
         {
             get => textMessage;
@@ -40,7 +44,10 @@ namespace SPO_RKOT_UI.ViewModels
             }
         }
 
-        public  HomeViewModel()
+        /// <summary>
+        /// Конструктор для объекта ViewModel для HomeView.
+        /// </summary>
+        public HomeViewModel()
         {
             try
             {
@@ -48,12 +55,15 @@ namespace SPO_RKOT_UI.ViewModels
             }
             catch (Exception ex)
             {
-                reportsFromDB = null;
+                ReportsFromDB = null;
                 TextMessage = ex.Message;
             }
         }
 
-        public async Task Update()
+        /// <summary>
+        /// Обновляет данные в RepotsFromDB. При появлении ошибки изменяет текст сообщения. 
+        /// </summary>
+        public async Task UpdateAsync()
         {
             try
             {
@@ -61,11 +71,15 @@ namespace SPO_RKOT_UI.ViewModels
             }
              catch (Exception ex)
             {
-                reportsFromDB = null;
+                ReportsFromDB = null;
                 TextMessage = ex.Message;
             }
         }
 
+        /// <summary>
+        /// Загружаует данные в RepotsFromDB.
+        /// </summary>
+        /// <exception cref="Exception">Ошибка работы с базой данных</exception>
         private async Task LoadDataAsync()
         {
             using (var context = new RkotContext())

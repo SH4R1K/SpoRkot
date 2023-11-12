@@ -26,6 +26,7 @@ namespace SPO_RKOT_UI.Views
             InitializeComponent();
         }
 
+        //Кнопка Подробнее
         private void MoreInfoButton_Click(object sender, RoutedEventArgs e)
         {
             var infoView = new MoreInfoView();
