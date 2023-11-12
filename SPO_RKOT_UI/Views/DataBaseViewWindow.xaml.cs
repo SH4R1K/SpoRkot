@@ -3,6 +3,7 @@ using SpoRkotLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -71,19 +72,19 @@ namespace SPO_RKOT_UI.Views
             else WindowState = WindowState.Normal;
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ReportInfoSaveChanged();
+            await ReportInfoSaveChanged();
         }
 
-        private void ReportInfoSaveChanged()
+        private async Task ReportInfoSaveChanged()
         {
             try
             {
                 using (var context = new RkotContext())
                 {
                     context.Update(ReportInfo);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
             }
             catch (Exception)
@@ -105,7 +106,7 @@ namespace SPO_RKOT_UI.Views
             dgridScrollViewer.ScrollToVerticalOffset(y - x);
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private async void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!isCancel)
             {
@@ -113,7 +114,7 @@ namespace SPO_RKOT_UI.Views
                 saveChangesWindowDialog.ShowDialog();
                 if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Yes)
                 {
-                    ReportInfoSaveChanged();
+                    await ReportInfoSaveChanged();
                     MessageBox.Show("Данные сохранены");
                 }
                 else if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Cancel)

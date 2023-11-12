@@ -1,9 +1,12 @@
 ﻿using ExcelLibrary;
 using Microsoft.Win32;
 using SPO_RKOT_UI.ViewModels;
+using SpoRkotLibrary.Data;
 using SpoRkotLibrary.Models;
 using System;
 using System.ComponentModel;
+using System.ComponentModel.Design.Serialization;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -26,7 +29,7 @@ namespace SPO_RKOT_UI.Views
         }
 
 
-        private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+        private async void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -36,7 +39,7 @@ namespace SPO_RKOT_UI.Views
                 if (openFileDialog.ShowDialog() == true)
                 {
                     fileName = openFileDialog.FileName;
-                    if (ExcelReader.ImportFromExcel(fileName))
+                    if (await ExcelReader.ImportFromExcel(fileName))
                         MessageBox.Show("Отчет успешно добавлен.");
                     else
                         MessageBox.Show("Отчет с такими данными уже есть");
@@ -49,9 +52,9 @@ namespace SPO_RKOT_UI.Views
 
         }
 
-        private void UserList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private async void UserList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            OpenTableView();
+            await OpenTableView();
         }
 
         private void WatchButtonInRow_Click(object sender, RoutedEventArgs e)
@@ -62,18 +65,18 @@ namespace SPO_RKOT_UI.Views
             homeViewModel.Update();
         }
 
-        private void OpenTableView()
+        private async Task OpenTableView()
         {
             if (reportsListView.SelectedItem == null) return;
             ReportInfo reportInfo = (ReportInfo)reportsListView.SelectedItem;
             var dataBase = new DataBaseViewWindow(reportInfo);
             dataBase.ShowDialog();
-            homeViewModel.Update();
+            await homeViewModel.Update();
         }
 
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            homeViewModel.Update();
+            await homeViewModel.Update();
         }
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
@@ -209,7 +212,17 @@ namespace SPO_RKOT_UI.Views
 
         private void DeleteReportButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var answer = MessageBox.Show("Вы уверены, что хотите удалить отчёт?", "Удаление отчёта",MessageBoxButton.YesNo,MessageBoxImage.Warning);
+            if (answer == MessageBoxResult.Yes)
+            {
+                using (var context = new RkotContext())
+                {
+                    ReportInfo report = (sender as Button)?.DataContext as ReportInfo;
+                    context.ReportInfos.Remove(report);
+                    context.SaveChanges();
+                    homeViewModel.Update();
+                }
+            }
         }
     }
 }
