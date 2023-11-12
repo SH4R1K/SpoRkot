@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace SPO_RKOT_UI.ViewModels
 {
-    /// <summary>
-    /// ViewModel для SettingsView
-    /// </summary>
-    public class SettingsViewModel : ViewModelBase
+    internal class InformationVieModel
     {
     }
 }

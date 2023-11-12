@@ -75,7 +75,6 @@ namespace SPO_RKOT_UI.ViewModels
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowInformationViewCommand = new ViewModelCommand(ExecuteShowInformationViewCommand);
             ShowSettingsViewCommand = new ViewModelCommand(ExecuteShowSettingsViewCommand);
-            //Default view
 
             //View по умолчанию
             ExecuteShowHomeViewCommand(true);
@@ -101,6 +100,9 @@ namespace SPO_RKOT_UI.ViewModels
             Icon = IconChar.Question;
         }
 
+        /// <summary>
+        /// Открывает страницу для настроек
+        /// </summary>
         private void ExecuteShowSettingsViewCommand(object obj)
         {
             CurrentChildView = new SettingsViewModel();
