@@ -72,10 +72,11 @@ namespace SPO_RKOT_UI.ViewModels
                     .Include(ri => ri.Reports).ThenInclude(r => r.HttpQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.Operator);
                     ReportsFromDB = new ObservableCollection<ReportInfo>(reportInfos.ToList());
+                    TextMessage = string.Empty;
                 }
                 catch (Exception)
                 {
-                    throw new Exception("Проблема с загрузкой данных. Проверьте подключение к интернету или обратитесь к системному администратору.");
+                    throw new Exception("Проблема с загрузкой данных. Проверьте подключение к интернету.");
                 }
             }
 

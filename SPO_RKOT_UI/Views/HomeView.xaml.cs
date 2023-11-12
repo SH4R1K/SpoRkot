@@ -181,13 +181,24 @@ namespace SPO_RKOT_UI.Views
 
         private void Sort(string sortBy, ListSortDirection direction)
         {
-            ICollectionView dataView =
-              CollectionViewSource.GetDefaultView(reportsListView.ItemsSource);
+            try
+            {
+                ICollectionView dataView =
+                CollectionViewSource.GetDefaultView(reportsListView.ItemsSource);
 
-            dataView.SortDescriptions.Clear();
-            SortDescription sd = new SortDescription(sortBy, direction);
-            dataView.SortDescriptions.Add(sd);
-            dataView.Refresh();
+                dataView.SortDescriptions.Clear();
+                SortDescription sd = new SortDescription(sortBy, direction);
+                dataView.SortDescriptions.Add(sd);
+                dataView.Refresh();
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show($"Данные отсутствуют", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Неизвестная Ошибка: \n{ex}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

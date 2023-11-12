@@ -188,8 +188,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="120"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -227,6 +227,16 @@
                     Style="{StaticResource buttonDefaulStyle}"
                     Width="150"
                     Click="SelectFileButton_Click" />
+
+                    <StackPanel Orientation="Horizontal" 
+                                VerticalAlignment="Center">
+                        <TextBlock x:Name="messageTextBlock" 
+                               Text="{Binding TextMessage}"
+                               Style="{StaticResource InformationTextBlock}"
+                               Margin="0"
+                               Padding="0"
+                               FontSize="16"/>
+                    </StackPanel>
                 </WrapPanel>
             </ScrollViewer>
         </Grid>
@@ -332,7 +342,7 @@
             </Border>
         </Grid>
 
-        <TextBlock x:Name="messageTextBlock" Text="{Binding TextMessage}"/>
+        
         <!--Data Grid-->
         <Border Grid.Row="2"
                 Background="{StaticResource panelColor}"
