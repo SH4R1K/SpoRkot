@@ -42,14 +42,20 @@
                     Background="{StaticResource plainTextColor1}"
                     Width="90"
                     Margin="0 5 0 15"
-                    Click="MoreInfoButton_Click" />
+                    Click="MoreInfoButton_Click" 
+                    Style="{StaticResource controlButton}"
+                    />
                     
                     <LineBreak />
 <Run FontWeight="Bold">Горячие клавиши:</Run> 
                     <LineBreak />
-                    Ctrl+N - "Добавить отчёт" | F1 - "Справка"
+                    Ctrl+N - "Добавить отчёт"
                     <LineBreak />
-                    F5 - "Обновить список"    | Esc - "Выход"
+                    F1 - "Справка"
+                    <LineBreak />
+                    F5 - "Обновить список"   
+                    <LineBreak />
+                    Esc - "Выход"
 
                 </TextBlock>
 
