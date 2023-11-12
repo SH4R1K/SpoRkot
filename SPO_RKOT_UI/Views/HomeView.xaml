@@ -342,15 +342,17 @@
                       ItemsSource="{Binding ReportsFromDB}" 
                       Margin="6" Padding="0"
                       BorderThickness="0"
-                      MouseDoubleClick="UserList_MouseDoubleClick">
+                      MouseDoubleClick="UserList_MouseDoubleClick"
+                      GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
                 
                 <ListView.View>
-                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
-                        <GridViewColumn DisplayMemberBinding="{Binding FederalDistrict}" Header="Федеральный округ"/>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}"
+                              >
+                        <GridViewColumn DisplayMemberBinding="{Binding FederalDistrict}" 
+                                        Header="Федеральный округ"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Location}" Header="Место проведения контроля"/>
                         <GridViewColumn DisplayMemberBinding="{Binding StartDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата начала контроля"/>
                         <GridViewColumn DisplayMemberBinding="{Binding EndDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата завершения контроля"/>
-                                                
                         <GridViewColumn Header="Просмотреть">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -367,25 +369,7 @@
                         
                     </GridView>
                 </ListView.View>
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Сортировка по возрастанию"/>
-                        <MenuItem Header="Сортировка по убыванию"/>
-                        <Separator />
-                        <MenuItem Header="Группировать по это колонке"/>
-                        <MenuItem Header="Скрыть облать группировки"/>
-                        <Separator />
-                        <MenuItem Header="Скрыть колонку"/>
-                        <MenuItem Header="Выбор колонок"/>
-                        <MenuItem Header="Подбор ширины"/>
-                        <MenuItem Header="Подбор ширины (все)"/>
-                        <Separator />
-                        <MenuItem Header="Конструктор фильтра"/>
-                        <MenuItem Header="Конструктор фильтра"/>
-                        <MenuItem Header="Показать панель поиска"/>
-                        <MenuItem Header="Показать строку авто-фильтра"/>
-                    </ContextMenu>
-                </ListView.ContextMenu>
+                
                 <ListView.Style>
                     <Style TargetType="ListView">
                         <Setter Property="Background" Value="Transparent"/>
@@ -428,6 +412,26 @@
                         </Setter>
                     </Style>
                 </ListView.ItemContainerStyle>
+                
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Сортировка по возрастанию"/>
+                        <MenuItem Header="Сортировка по убыванию"/>
+                        <Separator />
+                        <MenuItem Header="Группировать по это колонке"/>
+                        <MenuItem Header="Скрыть облать группировки"/>
+                        <Separator />
+                        <MenuItem Header="Скрыть колонку"/>
+                        <MenuItem Header="Выбор колонок"/>
+                        <MenuItem Header="Подбор ширины"/>
+                        <MenuItem Header="Подбор ширины (все)"/>
+                        <Separator />
+                        <MenuItem Header="Конструктор фильтра"/>
+                        <MenuItem Header="Конструктор фильтра"/>
+                        <MenuItem Header="Показать панель поиска"/>
+                        <MenuItem Header="Показать строку авто-фильтра"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
             </ListView>
         </Border>
     </Grid>
