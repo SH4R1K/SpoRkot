@@ -9,8 +9,17 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ExcelLibrary
 {
+    /// <summary>
+    /// Статический класс для чтения данных из Excel-файла
+    /// </summary>
     public static class ExcelReader
     {
+        /// <summary>
+        /// Метод для сравнения отчёта с уже добавленными отчётами
+        /// </summary>
+        /// <param name="fileName">XLS/XLSX файл</param>
+        /// <returns>Возвращает false если отчёт который пытаемся добавить уже существует
+        /// возвращает true если такого отчёта еще не было добавлено</returns>
         public static bool ImportFromExcel(string fileName)
         {
             using (var context = new RkotContext())
@@ -33,6 +42,11 @@ namespace ExcelLibrary
             }
         }
 
+        /// <summary>
+        /// Метод для открыти excel файл 
+        /// </summary>
+        /// <param name="fileName">XLS/XLSX файл</param>
+        /// <returns></returns>
         private static ReportInfo LoadDataFromExcel(string fileName)
         {
             var excelApp = new Excel.Application();
@@ -53,6 +67,11 @@ namespace ExcelLibrary
             return reportInfo;
         }
 
+        /// <summary>
+        /// Метод для выборки нужных данных из excel-файла
+        /// </summary>
+        /// <param name="worksheet"></param>
+        /// <returns></returns>
         private static ReportInfo LoadDataFromCells(dynamic worksheet)
         {
             using var context = new RkotContext();
