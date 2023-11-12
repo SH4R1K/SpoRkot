@@ -19,7 +19,7 @@ namespace ExcelLibrary
         /// </summary>
         /// <param name="fileName">Имя XLS/XLSX файла</param>
         /// <returns>Возвращает false, если отчёт уже находится в базе данных, а true, если отчет нет в базе данных</returns>
-        public async static Task<bool> ImportFromExcel(string fileName)
+        public async static Task<bool> ImportFromExcelAsync(string fileName)
         {
             using (var context = new RkotContext())
             {

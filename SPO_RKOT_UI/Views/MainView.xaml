@@ -31,7 +31,7 @@
         <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
             <local:HomeView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:InformationViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:ViewModelBase}">
             <local:InformationView/>
         </DataTemplate>
     </Window.Resources>

@@ -1,39 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SpoRkotLibrary.Models;
 
 namespace SpoRkotLibrary.Data;
 
+/// <summary>
+/// Класс для работы с базой данных
+/// </summary>
 public partial class RkotContext : DbContext
 {
+    /// <summary>
+    /// Конструктор для создания контекста
+    /// </summary>
     public RkotContext()
     {
     }
 
+    /// <summary>
+    /// Конструктор для создания контекста с определенными настройками
+    /// </summary>
+    /// <param name="options">Настройки подключения</param>
     public RkotContext(DbContextOptions<RkotContext> options)
         : base(options)
     {
     }
 
+    /// <summary>
+    /// Данные о качестве HTTP
+    /// </summary>
     public virtual DbSet<HttpQuality> HttpQualities { get; set; }
 
+    /// <summary>
+    /// Данные о оператрах
+    /// </summary>
     public virtual DbSet<Operator> Operators { get; set; }
 
+    /// <summary>
+    /// Данные связи отчетов с операторами
+    /// </summary>
     public virtual DbSet<Report> Reports { get; set; }
 
+    /// <summary>
+    /// Данные о отчетах
+    /// </summary>
     public virtual DbSet<ReportInfo> ReportInfos { get; set; }
 
+    /// <summary>
+    /// Данные о качестве SMS
+    /// </summary>
     public virtual DbSet<SmsQuality> SmsQualities { get; set; }
 
+    /// <summary>
+    /// Статистические данные о соединениях
+    /// </summary>
     public virtual DbSet<Stat> Stats { get; set; }
 
+    /// <summary>
+    /// Данные о качестве голосовых соединений
+    /// </summary>
     public virtual DbSet<VoiceQuality> VoiceQualities { get; set; }
 
+    /// <summary>
+    /// Создает строку подключения
+    /// </summary>
+    /// <param name="optionsBuilder">Строка подключения</param>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=SPO_RKOT;Integrated Security=True;User ID=MERESK\\Yakov;Trust Server Certificate=True");
 
+    /// <summary>
+    /// Создает модель данных
+    /// </summary>
+    /// <param name="modelBuilder">Модель данных</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<HttpQuality>(entity =>
@@ -133,9 +170,5 @@ public partial class RkotContext : DbContext
                 .HasForeignKey<VoiceQuality>(d => d.ReportId)
                 .HasConstraintName("FK_VoiceQuality_Report");
         });
-
-        OnModelCreatingPartial(modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
