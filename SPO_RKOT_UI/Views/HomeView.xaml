@@ -402,12 +402,12 @@
                     <ContextMenu>
                         <MenuItem Header="Добавить новый отчет (CTRL + N)" Click="SelectFileButton_Click">
                             <MenuItem.Icon>
-                                <Image Source="{StaticResource Images.plus}" ></Image>
+                                <Image Source="{StaticResource Images.plus}" Height="15" Width="15" ></Image>
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="Обновить (F5)" Click="UpdateButton_Click">
                             <MenuItem.Icon>
-                                <Image Source="{StaticResource Images.refresh}" ></Image>
+                                <Image Source="{StaticResource Images.refresh}" Height="15" Width="15" ></Image>
                             </MenuItem.Icon>
                         </MenuItem>
                     </ContextMenu>
