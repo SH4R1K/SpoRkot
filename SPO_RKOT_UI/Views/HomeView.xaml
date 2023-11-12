@@ -236,7 +236,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Disabled">
                 <WrapPanel Orientation="Horizontal"
                         VerticalAlignment="Top"
                         Grid.Column="0">
@@ -259,31 +260,49 @@
                              Margin="5,5,0,0"
                              TextChanged="FindDistrictTextBox_TextChanged"
                              x:Name="findDistrictTextBox"/>
-                        </StackPanel>
-                        
+                        </StackPanel>                        
                     </StackPanel>
+                    
                     <Separator Margin="20"/>
+                    
                     <StackPanel>
                         <TextBlock Text="Область" Style="{StaticResource labelDefault}"/>
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
                             <TextBox Text=""   
-                             FontSize="13"
-                             Height="24"
-                             Width="200"
-                             Background="Transparent"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"                            
-                             Foreground="{StaticResource plainTextColor3}"
-                             CaretBrush="{StaticResource plainTextColor3}"
-                             BorderBrush="{StaticResource plainTextColor3}"
-                             BorderThickness="0,0,0,1"                             
-                             VerticalContentAlignment="Center"
-                             Margin="5,5,0,0"
-                             TextChanged="FindLocationTextBox_TextChanged"
-                             x:Name="findLocationTextBox"/>
+                                 FontSize="13"
+                                 Height="24"
+                                 Width="200"
+                                 Background="Transparent"
+                                 FontWeight="Medium"
+                                 FontFamily="Montserrat"                            
+                                 Foreground="{StaticResource plainTextColor3}"
+                                 CaretBrush="{StaticResource plainTextColor3}"
+                                 BorderBrush="{StaticResource plainTextColor3}"
+                                 BorderThickness="0,0,0,1"                             
+                                 VerticalContentAlignment="Center"
+                                 Margin="5,5,0,0"
+                                 TextChanged="FindLocationTextBox_TextChanged"
+                                 x:Name="findLocationTextBox"/>
                         </StackPanel>
+                    </StackPanel>
 
+                    <Separator Margin="20"/>
+                    
+                    <StackPanel>
+                        <TextBlock Text="Дата начала отчёта" Style="{StaticResource labelDefault}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <DatePicker x:Name="startDatePicker" Style="{StaticResource defaultDatePicker}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Separator Margin="20"/>
+                    
+                    <StackPanel>
+                        <TextBlock Text="Дата завершения отчёта" Style="{StaticResource labelDefault}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <DatePicker x:Name="endDatePicker" Style="{StaticResource defaultDatePicker}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                        </StackPanel>
                     </StackPanel>
                 </WrapPanel>
             </ScrollViewer>
@@ -355,7 +374,9 @@
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn DisplayMemberBinding="{Binding FederalDistrict}" Header="Федеральный округ"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Location}" Header="Место проведения контроля"/>
-                        <GridViewColumn Header="Период проведения контроля">
+                        <GridViewColumn DisplayMemberBinding="{Binding StartDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата начала контроля"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding EndDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата завершения контроля"/>
+                        <!--<GridViewColumn Header="Период проведения контроля">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -365,7 +386,7 @@
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                        </GridViewColumn>-->
                         
                         <GridViewColumn Header="Просмотреть">
                             <GridViewColumn.CellTemplate>
