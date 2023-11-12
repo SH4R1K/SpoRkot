@@ -20,7 +20,6 @@ namespace ExcelLibrary
         /// <param name="fileName">XLS/XLSX файл</param>
         /// <returns>Возвращает false если отчёт который пытаемся добавить уже существует
         /// возвращает true если такого отчёта еще не было добавлено</returns>
-        public static bool ImportFromExcel(string fileName)
         public async static Task<bool> ImportFromExcel(string fileName)
         {
             using (var context = new RkotContext())
