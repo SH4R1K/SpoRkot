@@ -8,11 +8,15 @@ using System.Threading.Tasks;
 
 namespace SPO_RKOT_UI.ViewModels
 {
+    /// <summary>
+    /// ViewModel для HomeView
+    /// </summary>
     public class HomeViewModel : ViewModelBase
     {
-        private ObservableCollection<ReportInfo> reportsFromDB;
-        private string textMessage;
 
+        private ObservableCollection<ReportInfo> reportsFromDB;
+        
+        // Текущие отчеты
         public ObservableCollection<ReportInfo> ReportsFromDB
         {
             get => reportsFromDB;
@@ -23,6 +27,9 @@ namespace SPO_RKOT_UI.ViewModels
             }
         }
 
+        private string textMessage;
+
+        // Текст сообщения об ошибке
         public string TextMessage
         {
             get => textMessage;
