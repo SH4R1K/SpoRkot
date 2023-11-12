@@ -13,6 +13,8 @@
                 <ResourceDictionary Source="/Styles/LightTheme/DatePickerStyles.xaml"/>
                 <ResourceDictionary Source="/Styles/LightTheme/ListViewStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <BitmapImage x:Key="Images.plus" UriSource="/Images/plus.png" />
+            <BitmapImage x:Key="Images.refresh" UriSource="/Images/refresh.png" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

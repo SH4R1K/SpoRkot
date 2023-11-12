@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpoRkotLibrary.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -24,8 +25,13 @@ namespace SPO_RKOT_UI.Views
         public MainView()
         {
             InitializeComponent();
+            ConnectionManager.Login = Properties.Settings.Default.login;
+            ConnectionManager.DataBase = Properties.Settings.Default.database;
+            ConnectionManager.Password = Properties.Settings.Default.password;
+            ConnectionManager.Server = Properties.Settings.Default.server;
         }
 
+        //Window Controls
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         private void PanelControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -39,22 +45,26 @@ namespace SPO_RKOT_UI.Views
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
 
+        //Кнопка Закрыть(крестик)
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        //Кнопка Cвернуть(палочка)
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
 
+        //Кнопка Развернуть(квадратик)
         private void MaximizeButton_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Normal) WindowState = WindowState.Maximized;
             else WindowState = WindowState.Normal;
         }
 
+        //Горячая клавиша для закрытия
         private void CloseCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Close();

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SPO_RKOT_UI.ViewModels
 {
-    public class DataTableViewModel : ViewModelBase
+    /// <summary>
+    /// ViewModel для SettingsView
+    /// </summary>
+    public class SettingsViewModel : ViewModelBase
     {
-
     }
 }

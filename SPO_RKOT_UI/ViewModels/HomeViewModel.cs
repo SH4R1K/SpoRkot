@@ -4,14 +4,21 @@ using SpoRkotLibrary.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SPO_RKOT_UI.ViewModels
 {
+    /// <summary>
+    /// ViewModel для HomeView.
+    /// </summary>
     public class HomeViewModel : ViewModelBase
     {
-        private ObservableCollection<ReportInfo> reportsFromDB;
-        private string textMessage;
 
+        private ObservableCollection<ReportInfo> reportsFromDB;
+        
+        /// <summary>
+        /// Текущие данные отчеты.
+        /// </summary>
         public ObservableCollection<ReportInfo> ReportsFromDB
         {
             get => reportsFromDB;
@@ -22,6 +29,11 @@ namespace SPO_RKOT_UI.ViewModels
             }
         }
 
+        private string textMessage;
+
+        /// <summary>
+        /// Текст сообщения об ошибки.
+        /// </summary>
         public string TextMessage
         {
             get => textMessage;
@@ -32,35 +44,44 @@ namespace SPO_RKOT_UI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Конструктор для объекта ViewModel для HomeView.
+        /// </summary>
         public HomeViewModel()
         {
             try
             {
-                LoadData();
+                LoadDataAsync();
             }
             catch (Exception ex)
             {
-                reportsFromDB = null;
+                ReportsFromDB = null;
                 TextMessage = ex.Message;
             }
         }
 
-        public void Update()
+        /// <summary>
+        /// Обновляет данные в RepotsFromDB. При появлении ошибки изменяет текст сообщения. 
+        /// </summary>
+        public async Task UpdateAsync()
         {
             try
             {
-                LoadData();
+                await LoadDataAsync();
             }
              catch (Exception ex)
             {
-                reportsFromDB = null;
+                ReportsFromDB = null;
                 TextMessage = ex.Message;
             }
         }
 
-        private void LoadData()
+        /// <summary>
+        /// Загружаует данные в RepotsFromDB.
+        /// </summary>
+        /// <exception cref="Exception">Ошибка работы с базой данных</exception>
+        private async Task LoadDataAsync()
         {
-
             using (var context = new RkotContext())
             {
                 try
@@ -71,11 +92,12 @@ namespace SPO_RKOT_UI.ViewModels
                     .Include(ri => ri.Reports).ThenInclude(r => r.VoiceQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.HttpQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.Operator);
-                    ReportsFromDB = new ObservableCollection<ReportInfo>(reportInfos.ToList());
+                    ReportsFromDB = new ObservableCollection<ReportInfo>(await reportInfos.ToListAsync());
+                    TextMessage = string.Empty;
                 }
                 catch (Exception)
                 {
-                    throw new Exception("Проблема с загрузкой данных. Проверьте подключение к интернету или обратитесь к системному администратору.");
+                    throw new Exception("Проблема с загрузкой данных. Проверьте подключение к интернету.");
                 }
             }
 

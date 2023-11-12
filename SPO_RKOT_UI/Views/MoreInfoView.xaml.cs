@@ -25,12 +25,14 @@ namespace SPO_RKOT_UI.Views
         {
             InitializeComponent();
         }
-
+        
+        //Кнопка Закрыть(крестик)
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        //Window Controls
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         private void PanelControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

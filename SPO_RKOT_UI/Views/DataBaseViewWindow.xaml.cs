@@ -3,6 +3,7 @@ using SpoRkotLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,8 +16,15 @@ namespace SPO_RKOT_UI.Views
     /// </summary>
     public partial class DataBaseViewWindow : Window
     {
+        /// <summary>
+        /// Нажата отмена или нет
+        /// </summary>
         bool isCancel;
 
+        /// <summary>
+        /// Конструктор для создания окна DataBaseViewWindow с переданным отчетом
+        /// </summary>
+        /// <param name="reportInfo">Отображаемый отчет</param>
         public DataBaseViewWindow(ReportInfo reportInfo)
         {
             InitializeComponent();
@@ -37,8 +45,13 @@ namespace SPO_RKOT_UI.Views
                 excelDataGrid.Columns.Add(dataGridColumn);
             }
         }
+
+        /// <summary>
+        /// Отображаемый отчет
+        /// </summary>
         public ReportInfo ReportInfo { get; set; }
 
+        //Window Controls
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         private void PanelControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -52,6 +65,7 @@ namespace SPO_RKOT_UI.Views
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
 
+        //Кнопки Закрыть(крестик) и Отмена
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -59,42 +73,50 @@ namespace SPO_RKOT_UI.Views
                 isCancel = true;
             Close();
         }
-
+        
+        //Кнопка Cвернуть(палочка)
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
 
+        //Кнопка Развернуть(квадратик)
         private void MaximizeButton_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Normal) WindowState = WindowState.Maximized;
             else WindowState = WindowState.Normal;
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        //Кнопка Сохранить
+        private async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ReportInfoSaveChanged();
+            await ReportInfoSaveChangedAsync();
         }
 
-        private void ReportInfoSaveChanged()
+        /// <summary>
+        /// Сохраняет изменения в отчете
+        /// </summary>
+        private async Task ReportInfoSaveChangedAsync()
         {
             try
             {
                 using (var context = new RkotContext())
                 {
                     context.Update(ReportInfo);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Проблема с сохранением. Данные не сохранены.");
+                MessageBox.Show("Проблема с сохранением. Данные не сохранены. Проверьте подключение к Интернету или обратитесь к системному администратору.");
             }
 
         }
+
+        //Вертикальная и горизонтальная прокрутка
         private void DgridScrollViewer_Loaded(object sender, RoutedEventArgs e)
         {
-            // Add MouseWheel support for the datagrid scrollviewer.
+            //Добавляет прокрутку мышкой.
             excelDataGrid.AddHandler(MouseWheelEvent, new RoutedEventHandler(DataGridMouseWheelHorizontal), true);
         }
         private void DataGridMouseWheelHorizontal(object sender, RoutedEventArgs e)
@@ -105,7 +127,8 @@ namespace SPO_RKOT_UI.Views
             dgridScrollViewer.ScrollToVerticalOffset(y - x);
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        //Показ диологового окна для сохранении изменений при закрытии
+        private async void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!isCancel)
             {
@@ -113,7 +136,7 @@ namespace SPO_RKOT_UI.Views
                 saveChangesWindowDialog.ShowDialog();
                 if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Yes)
                 {
-                    ReportInfoSaveChanged();
+                    await ReportInfoSaveChangedAsync();
                     MessageBox.Show("Данные сохранены");
                 }
                 else if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Cancel)

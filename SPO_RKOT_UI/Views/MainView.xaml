@@ -10,7 +10,9 @@
         Title="SPO RKOT" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        MinHeight="720"
+        MinWidth="1024">
 
 
     <Window.DataContext>
@@ -31,8 +33,11 @@
         <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
             <local:HomeView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:InformationViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:ViewModelBase}">
             <local:InformationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+            <local:SettingsView/>
         </DataTemplate>
     </Window.Resources>
 
@@ -43,7 +48,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <!--Navigation menu-->
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="200"/>
                 <!--Content section-->
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -103,7 +108,17 @@
                                 <!--icon of menu btns-->
                                 <TextBlock Text="Справка" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
-                        </RadioButton>  
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowSettingsViewCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="Tools" Style="{StaticResource menuButtonIcon}"/>
+                                <!--icon of menu btns-->
+                                <TextBlock Text="Настройки" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                        </RadioButton>
                     </StackPanel>
                     <!--Exit Btn-->
                     <StackPanel Grid.Row="1"
@@ -135,7 +150,7 @@
                         <!--Control bar-->
                         <RowDefinition Height="25"/>
                         <!--Header / Caption-->
-                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="25"/>
                         <!--Content section / Child views-->
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -198,7 +213,7 @@
                     </Grid>
 
                     <!--Content section / Child views-->
-                    <ContentControl Content="{Binding CurrentChildView}" Grid.Row="2" Margin="25"/>
+                    <ContentControl Content="{Binding CurrentChildView}" Grid.Row="2" Margin="25 5 25 25"/>
                 </Grid>
             </Border>
         </Grid>

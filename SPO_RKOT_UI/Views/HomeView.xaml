@@ -188,8 +188,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="120"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -227,6 +227,16 @@
                     Style="{StaticResource buttonDefaulStyle}"
                     Width="150"
                     Click="SelectFileButton_Click" />
+
+                    <StackPanel Orientation="Horizontal" 
+                                VerticalAlignment="Center">
+                        <TextBlock x:Name="messageTextBlock" 
+                               Text="{Binding TextMessage}"
+                               Style="{StaticResource InformationTextBlock}"
+                               Margin="0"
+                               Padding="0"
+                               FontSize="16"/>
+                    </StackPanel>
                 </WrapPanel>
             </ScrollViewer>
         </Grid>
@@ -289,7 +299,7 @@
                                 <TextBox Text=""   
                                  FontSize="13"
                                  Height="24"
-                                 Width="200"
+                                 Width="190"
                                  Background="Transparent"
                                  FontWeight="Medium"
                                  FontFamily="Montserrat"                            
@@ -322,17 +332,18 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <Button Content="Очистить фильтры"
+                        <Button Content="Очистить"
                                 Click="ClearFiltersButton_Click"
                                 Style="{StaticResource buttonDefaulStyle}"
                                 Foreground="{StaticResource titleColor1}"
-                                Width="150"/>
+                                Width="100"
+                                FontSize="14"/>
                     </WrapPanel>
                 </ScrollViewer>
             </Border>
         </Grid>
 
-        <TextBlock x:Name="messageTextBlock" Text="{Binding TextMessage}"/>
+        
         <!--Data Grid-->
         <Border Grid.Row="2"
                 Background="{StaticResource panelColor}"
@@ -352,8 +363,8 @@
                         <GridViewColumn DisplayMemberBinding="{Binding FederalDistrict}" 
                                         Header="Федеральный округ"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Location}" Header="Место проведения контроля"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding StartDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата начала контроля"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding EndDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата завершения контроля"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding StartDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата начала"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding EndDate, StringFormat=d, ConverterCulture='ru-ru'}" Header="Дата завершения"/>
                         <GridViewColumn Header="Просмотреть">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -368,12 +379,37 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         
+                        <GridViewColumn Header="Удалить">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="deleteButton"
+                                            Style="{StaticResource rowButtonStyle}"
+                                            Click="DeleteReportButton_Click"
+                                            HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <fa:IconImage Icon="Trash" 
+                                                      Style="{StaticResource rowButtonIconStyle1}"
+                                                          HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
                     </GridView>
                 </ListView.View>
                 <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Добавить новый отчет (CTRL + N)" Click="SelectFileButton_Click"/>
-                        <MenuItem Header="Обновить (F5)" Click="UpdateButton_Click"/>
+                        <MenuItem Header="Добавить новый отчет (CTRL + N)" Click="SelectFileButton_Click">
+                            <MenuItem.Icon>
+                                <Image Source="{StaticResource Images.plus}" Height="15" Width="15" ></Image>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Обновить (F5)" Click="UpdateButton_Click">
+                            <MenuItem.Icon>
+                                <Image Source="{StaticResource Images.refresh}" Height="15" Width="15" ></Image>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </ContextMenu>
                 </ListView.ContextMenu>
                 <ListView.Style>
