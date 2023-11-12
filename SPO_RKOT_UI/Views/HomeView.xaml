@@ -372,7 +372,7 @@
                 </ListView.View>
                 <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Добавить новый отчет (CTRL + N)" Click="SelectFileButton_Click"/>
+                        <MenuItem Header="Добавить новый отчет (CTRL + N)" Click="SelectFileButton_Click" />
                         <MenuItem Header="Обновить (F5)" Click="UpdateButton_Click"/>
                     </ContextMenu>
                 </ListView.ContextMenu>

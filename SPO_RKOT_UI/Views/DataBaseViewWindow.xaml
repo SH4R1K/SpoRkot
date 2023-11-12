@@ -261,10 +261,10 @@
                                            
                                         </Style>
                                 </DataGrid.CellStyle>
-                                
-                                
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Operator.Name}" ClipboardContentBinding="{x:Null}" Header="Оператор" HeaderStringFormat=""/>
+
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Operator.Name}" ClipboardContentBinding="{x:Null}" Header="Оператор" HeaderStringFormat=""/>
                                         <DataGridTextColumn Header="" IsReadOnly="True"/>
                                         <DataGridTextColumn Header="Показатели качества услуг подвижной радиотелефонной связи в части голосового соединения" IsReadOnly="True"/>
                                         <DataGridTextColumn Binding="{Binding VoiceQuality.NonAccessibilityRatio}" ClipboardContentBinding="{x:Null}" Header="Доля неуспешных попыток установления голосового соединения  (Voice Service Non-Acessibility ) [%] | не более 5"/>
@@ -290,25 +290,6 @@
                                         <DataGridTextColumn Binding="{Binding Stat.CountLoadFile}" ClipboardContentBinding="{x:Null}" Header="Общее количество попыток соединений с сервером передачи данных HTTP (Загрузка файлов)"/>
                                         <DataGridTextColumn Binding="{Binding Stat.CountWebBrowsing}" ClipboardContentBinding="{x:Null}" Header="Общее количество тестовых сессий по протоколу HTTP (Web-browsing)"/>
                                     </DataGrid.Columns>
-                                    <DataGrid.ContextMenu>
-                                        <ContextMenu>
-                                            <MenuItem Header="Сортировка по возрастанию"/>
-                                            <MenuItem Header="Сортировка по убыванию"/>
-                                            <Separator />
-                                            <MenuItem Header="Группировать по это колонке"/>
-                                            <MenuItem Header="Скрыть облать группировки"/>
-                                            <Separator />
-                                            <MenuItem Header="Скрыть колонку"/>
-                                            <MenuItem Header="Выбор колонок"/>
-                                            <MenuItem Header="Подбор ширины"/>
-                                            <MenuItem Header="Подбор ширины (все)"/>
-                                            <Separator />
-                                            <MenuItem Header="Конструктор фильтра"/>
-                                            <MenuItem Header="Конструктор фильтра"/>
-                                            <MenuItem Header="Показать панель поиска"/>
-                                            <MenuItem Header="Показать строку авто-фильтра"/>
-                                        </ContextMenu>
-                                    </DataGrid.ContextMenu>
                                 </DataGrid>
                             </ScrollViewer>
                         </Border>
