@@ -16,6 +16,7 @@ namespace SPO_RKOT_UI.Views
     public partial class DataBaseViewWindow : Window
     {
         bool isCancel;
+        private ReportInfo reportInfo;
 
         public DataBaseViewWindow(ReportInfo reportInfo)
         {
@@ -108,7 +109,7 @@ namespace SPO_RKOT_UI.Views
                     ReportInfoSaveChanged();
                     MessageBox.Show("Данные сохранены");
                 }
-                else if(saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Cancel)
+                else if (saveChangesWindowDialog.DialogResult == SaveChangesWindowDialog.CustomDialogResult.Cancel)
                 {
                     e.Cancel = true;
                 }
