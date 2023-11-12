@@ -11,7 +11,7 @@ namespace ExcelLibrary
 {
     public static class ExcelReader
     {
-        public static bool ImportFromExcel(string fileName)
+        public async static Task<bool> ImportFromExcel(string fileName)
         {
             using (var context = new RkotContext())
             {
@@ -28,7 +28,7 @@ namespace ExcelLibrary
 
                 reportInfos.Add(reportInfo);
 
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return true;
             }
         }
@@ -128,7 +128,7 @@ namespace ExcelLibrary
         private static string GetAbbreveature(string inputString)
         {
             string abbreveature = "";
-            foreach (string item in inputString.Split(' '))
+            foreach (string item in inputString.Replace('-', ' ').Split(' '))
             {
                 abbreveature += item.Trim().Substring(0, 1);
             }

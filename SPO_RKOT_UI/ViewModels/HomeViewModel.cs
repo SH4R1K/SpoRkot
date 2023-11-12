@@ -4,6 +4,7 @@ using SpoRkotLibrary.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SPO_RKOT_UI.ViewModels
 {
@@ -32,11 +33,11 @@ namespace SPO_RKOT_UI.ViewModels
             }
         }
 
-        public HomeViewModel()
+        public  HomeViewModel()
         {
             try
             {
-                LoadData();
+                LoadDataAsync();
             }
             catch (Exception ex)
             {
@@ -45,11 +46,11 @@ namespace SPO_RKOT_UI.ViewModels
             }
         }
 
-        public void Update()
+        public async Task Update()
         {
             try
             {
-                LoadData();
+                await LoadDataAsync();
             }
              catch (Exception ex)
             {
@@ -58,9 +59,8 @@ namespace SPO_RKOT_UI.ViewModels
             }
         }
 
-        private void LoadData()
+        private async Task LoadDataAsync()
         {
-
             using (var context = new RkotContext())
             {
                 try
@@ -71,7 +71,7 @@ namespace SPO_RKOT_UI.ViewModels
                     .Include(ri => ri.Reports).ThenInclude(r => r.VoiceQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.HttpQuality)
                     .Include(ri => ri.Reports).ThenInclude(r => r.Operator);
-                    ReportsFromDB = new ObservableCollection<ReportInfo>(reportInfos.ToList());
+                    ReportsFromDB = new ObservableCollection<ReportInfo>(await reportInfos.ToListAsync());
                     TextMessage = string.Empty;
                 }
                 catch (Exception)
