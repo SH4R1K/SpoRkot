@@ -215,12 +215,19 @@ namespace SPO_RKOT_UI.Views
             var answer = MessageBox.Show("Вы уверены, что хотите удалить отчёт?", "Удаление отчёта",MessageBoxButton.YesNo,MessageBoxImage.Warning);
             if (answer == MessageBoxResult.Yes)
             {
-                using (var context = new RkotContext())
+                try
                 {
-                    ReportInfo report = (sender as Button)?.DataContext as ReportInfo;
-                    context.ReportInfos.Remove(report);
-                    context.SaveChanges();
-                    homeViewModel.Update();
+                    using (var context = new RkotContext())
+                    {
+                        ReportInfo report = (sender as Button)?.DataContext as ReportInfo;
+                        context.ReportInfos.Remove(report);
+                        context.SaveChanges();
+                        homeViewModel.Update();
+                    }
+                }
+                catch(Exception)
+                {
+                    MessageBox.Show("Данные не были удалены, либо были удалены ранее");
                 }
             }
         }
