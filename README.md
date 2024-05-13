@@ -28,6 +28,6 @@
 
 - Попов Глеб [GitHub: SH4R1K](https://github.com/SH4R1K)
 - Пономарёв Иван [GitHub: Pluhenciya](https://github.com/Pluhenciya)
-- Хватов Яков [GitHub: Meresk1](https://github.com/meresk1)
+- Хватов Яков [GitHub: Meresk](https://github.com/meresk)
 - Дмитрий Ушаков [GitHub: Morokenec](https://github.com/Morokenec)
 - Антипин Егор [GitHub: 4qiz](https://github.com/4qiz)
